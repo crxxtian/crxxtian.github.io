@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "First Signal: Detecting the Silent Intruders"
+title: "First Signal"
 date: 2025-03-20
 categories: security
 tags: [intrusion-detection, network-security, threat-hunting]

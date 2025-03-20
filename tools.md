@@ -100,23 +100,9 @@ These are security tools and scripts I've developed:
 <div class="post-grid">
   <article class="post-card">
     <div class="post-header">
-      <h2><a href="https://github.com/yourusername/ssh-sentinel">SSH Sentinel</a></h2>
+      <h2><a href="https://github.com/crxxtian/codepenguin-gpt-code-scanner">CodePenguin AI Code Scanner </a></h2>
     </div>
-    <p>Continuous monitoring for SSH endpoints with intelligent blocking of attackers based on behavior patterns. Features IP reputation checks and integrates with fail2ban.</p>
-  </article>
-
-  <article class="post-card">
-    <div class="post-header">
-      <h2><a href="https://github.com/yourusername/digital-deadman">Digital Deadman</a></h2>
-    </div>
-    <p>A secure "dead man's switch" for your digital assets. Ensures critical data becomes accessible to trusted contacts if you don't check in regularly.</p>
-  </article>
-
-  <article class="post-card">
-    <div class="post-header">
-      <h2><a href="https://github.com/yourusername/secureboot-toolkit">SecureBoot Toolkit</a></h2>
-    </div>
-    <p>Collection of scripts and tools for configuring, testing, and managing UEFI SecureBoot on Linux systems. Includes custom key management.</p>
+    <p>A ChatGPT-based Comprehensive code vulnerability analysis program. Capable of understanding 71 programming languages and their vulnerabilities in every use case.</p>
   </article>
 </div>
 
