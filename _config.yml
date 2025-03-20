@@ -1,3 +1,4 @@
-theme: minima
-title: Cristian’s Tech Blog
-description: Cybersecurity focused rants and writeups
+theme: jekyll-theme-midnight
+title: Cristian’s Cyber Blog
+description: Hacking the shadows since 2021
+author: Cris
