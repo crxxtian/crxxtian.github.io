@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}Cristian's Cyber Lair</title>
-    <!-- The 'relative_url' filter is a Jekyll feature; linters may not resolve this path during development -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     {% if site.google_analytics %}
@@ -12,9 +11,6 @@
     {% endif %}
 </head>
 <body>
-<!-- Matrix Rain Background -->
-<div class="matrix-rain" id="matrix-rain"></div>
-
 <!-- Reading Progress Bar -->
 <div class="reading-progress-bar"></div>
 
@@ -109,36 +105,6 @@
             console.log('Theme toggle clicked');
         });
     }
-
-    // Matrix Rain Effect
-    function createMatrixRain() {
-        const matrixRain = document.getElementById('matrix-rain');
-        const screenWidth = window.innerWidth;
-        const columnCount = Math.floor(screenWidth / 20);
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
-
-        for (let i = 0; i < columnCount; i++) {
-            const column = document.createElement('div');
-            column.className = 'matrix-column';
-            column.style.left = `${i * 20}px`;
-            column.style.animationDuration = `${Math.random() * 10 + 5}s`;
-            column.style.animationDelay = `${Math.random() * 5}s`;
-
-            let text = '';
-            for (let j = 0; j < 20; j++) {
-                text += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-            column.textContent = text;
-
-            matrixRain.appendChild(column);
-        }
-    }
-
-    window.onload = createMatrixRain;
-    window.onresize = () => {
-        document.getElementById('matrix-rain').innerHTML = '';
-        createMatrixRain();
-    };
 </script>
 </body>
 </html>

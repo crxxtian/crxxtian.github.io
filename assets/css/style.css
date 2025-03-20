@@ -10,11 +10,45 @@
 }
 
 /* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Orbitron', sans-serif;
     background: var(--dark-bg);
     color: var(--text-primary);
     line-height: 1.6;
+}
+
+/* Reading Progress Bar */
+.reading-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-green), var(--accent-blue));
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s ease;
+}
+
+/* Menu Toggle for Mobile */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle svg {
+    stroke: var(--neon-green);
 }
 
 /* Site Container */
@@ -23,23 +57,32 @@ body {
     width: 100%;
 }
 
-/* Menu Styling */
+/* Sidebar Menu (Inspired by jamesg.blog) */
 .stacked-menu {
     position: fixed;
     top: 0;
     left: 20px; /* Slightly left */
     width: 280px;
     height: 100vh;
-    background: rgba(17, 17, 17, 0.9); /* Blends into page */
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-    padding: 20px;
+    background: rgba(17, 17, 17, 0.7); /* Subtle, blended background */
+    border-right: 1px solid rgba(76, 255, 151, 0.2);
+    padding: 30px 20px;
     z-index: 10;
 }
 
 .menu-header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--neon-green);
     text-shadow: var(--terminal-glow);
+    margin-bottom: 30px;
+}
+
+.stacked-menu nav ul {
+    list-style: none;
+}
+
+.stacked-menu nav li {
+    margin-bottom: 15px;
 }
 
 .menu-link {
@@ -47,14 +90,15 @@ body {
     padding: 10px;
     color: var(--neon-green);
     text-decoration: none;
+    font-size: 1.2rem;
     transition: all 0.3s ease;
 }
 
 .menu-link:hover, .menu-link.active {
-    background: rgba(76, 255, 151, 0.2);
-    text-shadow: 0 0 5px var(--neon-green);
+    background: rgba(76, 255, 151, 0.1); /* Subtle highlight */
+    text-shadow: 0 0 5px var(--neon-green); /* Glow effect */
     transform: translateX(5px); /* Stack effect */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Lifted shadow */
 }
 
 .menu-separator {
@@ -336,6 +380,10 @@ main {
 
 /* Mobile Responsiveness */
 @media (max-width: 960px) {
+    .menu-toggle {
+        display: block;
+    }
+
     .stacked-menu {
         left: -280px;
         transition: left 0.3s ease;
