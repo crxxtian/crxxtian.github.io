@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}Cristian's Cyber Lair</title>
+    <!-- The 'relative_url' filter is a Jekyll feature; linters may not resolve this path during development -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     {% if site.google_analytics %}
@@ -11,6 +12,9 @@
     {% endif %}
 </head>
 <body>
+<!-- Matrix Rain Background -->
+<div class="matrix-rain" id="matrix-rain"></div>
+
 <!-- Reading Progress Bar -->
 <div class="reading-progress-bar"></div>
 
@@ -23,40 +27,60 @@
     </svg>
 </button>
 
-<!-- Decorative Vines -->
-<div class="vines">
-    <div class="vine vine-left"></div>
-    <div class="vine vine-right"></div>
-</div>
-
 <div class="site-container">
     <!-- Sidebar / Stacked Menu -->
     <aside class="stacked-menu">
         <div class="menu-header">
-            <h1>CRIS-SEC</h1>
+            <h1>> CRIS-SEC</h1>
         </div>
 
         <nav>
             <ul>
-                <li><a href="{{ '/' | relative_url }}" class="menu-link {% if page.url == '/' %}active{% endif %}">Home</a></li>
-                <li><a href="{{ '/posts' | relative_url }}" class="menu-link {% if page.url contains '/posts' %}active{% endif %}">All Posts</a></li>
-                <li><a href="{{ '/tools' | relative_url }}" class="menu-link {% if page.url contains '/tools' %}active{% endif %}">Tools</a></li>
-                <li><a href="{{ '/about' | relative_url }}" class="menu-link {% if page.url contains '/about' %}active{% endif %}">About</a></li>
+                {% assign home_class = "menu-link" %}
+                {% assign home_aria = "" %}
+                {% if page.url == '/' %}
+                {% assign home_class = "menu-link active" %}
+                {% assign home_aria = 'aria-current="page"' %}
+                {% endif %}
+                <li><a href="{{ '/' | relative_url }}" class="{{ home_class }}" {{ home_aria }}>> Home</a></li>
+
+                {% assign posts_class = "menu-link" %}
+                {% assign posts_aria = "" %}
+                {% if page.url contains '/posts' %}
+                {% assign posts_class = "menu-link active" %}
+                {% assign posts_aria = 'aria-current="page"' %}
+                {% endif %}
+                <li><a href="{{ '/posts' | relative_url }}" class="{{ posts_class }}" {{ posts_aria }}>> All Posts</a></li>
+
+                {% assign tools_class = "menu-link" %}
+                {% assign tools_aria = "" %}
+                {% if page.url contains '/tools' %}
+                {% assign tools_class = "menu-link active" %}
+                {% assign tools_aria = 'aria-current="page"' %}
+                {% endif %}
+                <li><a href="{{ '/tools' | relative_url }}" class="{{ tools_class }}" {{ tools_aria }}>> Tools</a></li>
+
+                {% assign about_class = "menu-link" %}
+                {% assign about_aria = "" %}
+                {% if page.url contains '/about' %}
+                {% assign about_class = "menu-link active" %}
+                {% assign about_aria = 'aria-current="page"' %}
+                {% endif %}
+                <li><a href="{{ '/about' | relative_url }}" class="{{ about_class }}" {{ about_aria }}>> About</a></li>
             </ul>
 
             <div class="menu-separator"></div>
 
             <ul>
-                <li><a href="https://github.com/crxxtian" target="_blank" class="menu-link">GitHub</a></li>
-                <li><a href="https://twitter.com/crxxtian" target="_blank" class="menu-link">Twitter</a></li>
+                <li><a href="https://github.com/crxxtian" target="_blank" class="menu-link">> GitHub</a></li>
+                <li><a href="https://twitter.com/crxxtian" target="_blank" class="menu-link">> Twitter</a></li>
             </ul>
         </nav>
 
         <div class="menu-footer">
-            &copy; {{ site.time | date: '%Y' }} CRIS-SEC Cyber Lair<br>
+            © {{ site.time | date: '%Y' }} CRIS-SEC Cyber Lair<br>
             Built with 0% surveillance
         </div>
-
     </aside>
 
     <main>
@@ -78,11 +102,43 @@
         document.querySelector('.reading-progress-bar').style.width = scrolled + '%';
     });
 
-    // Theme toggle functionality (if needed in the future)
-    document.querySelector('.toggle-checkbox').addEventListener('change', function() {
-        // This is a placeholder for theme switching functionality
-        console.log('Theme toggle clicked');
-    });
+    // Theme toggle functionality (placeholder)
+    const themeToggle = document.querySelector('.toggle-checkbox');
+    if (themeToggle) {
+        document.querySelector('.toggle-checkbox').addEventListener('change', function() {
+            console.log('Theme toggle clicked');
+        });
+    }
+
+    // Matrix Rain Effect
+    function createMatrixRain() {
+        const matrixRain = document.getElementById('matrix-rain');
+        const screenWidth = window.innerWidth;
+        const columnCount = Math.floor(screenWidth / 20);
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+
+        for (let i = 0; i < columnCount; i++) {
+            const column = document.createElement('div');
+            column.className = 'matrix-column';
+            column.style.left = `${i * 20}px`;
+            column.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            column.style.animationDelay = `${Math.random() * 5}s`;
+
+            let text = '';
+            for (let j = 0; j < 20; j++) {
+                text += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            column.textContent = text;
+
+            matrixRain.appendChild(column);
+        }
+    }
+
+    window.onload = createMatrixRain;
+    window.onresize = () => {
+        document.getElementById('matrix-rain').innerHTML = '';
+        createMatrixRain();
+    };
 </script>
 </body>
 </html>
