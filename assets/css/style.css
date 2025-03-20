@@ -445,6 +445,16 @@ h1.glitch::after, h2.glitch::after, h3.glitch::after {
     animation: loadingPulse 1.5s infinite;
 }
 
+/* Parallax Background Animation */
+@keyframes parallaxMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 0; }
+}
+.parallax-bg {
+    background: url('path/to/your/image.jpg') repeat-x;
+    animation: parallaxMove 30s linear infinite;
+}
+
 /* Advanced Cyber Effects */
 .effect-glow {
     animation: glowPulse 2s infinite;
