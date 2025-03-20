@@ -3,13 +3,36 @@ layout: default
 title: Home
 ---
 
+<!-- Intro Section -->
 <div class="intro">
   <h1>Welcome to the Cyber Lair</h1>
   <div class="intro-text">
-    <p>This is where I write about various cybersecurity topics and share what I'm currently working on.</p>
+    <p>This is where I write about various cybersecurity topics, share hacks, and explore digital sovereignty.</p>
   </div>
 </div>
 
+<!-- Featured Post Section -->
+{% if site.posts.size > 0 %}
+<section class="featured-post">
+  <h2>Featured Signal</h2>
+  <div class="post-card featured">
+    <div class="post-header">
+      <span class="post-date">{{ site.posts.first.date | date: "%b %d, %Y" }}</span>
+      <h2><a href="{{ site.posts.first.url | relative_url }}">{{ site.posts.first.title }}</a></h2>
+    </div>
+    <p>{{ site.posts.first.excerpt | strip_html | truncatewords: 40 }}</p>
+    <div class="post-meta">
+      <span class="post-category">{{ site.posts.first.categories | join: ", " }}</span>
+      <div class="social-share">
+        <a href="https://twitter.com/intent/tweet?text={{ site.posts.first.title | urlencode }}&url={{ site.posts.first.url | absolute_url }}" target="_blank" class="share-link">Share on Twitter</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.posts.first.url | absolute_url }}" target="_blank" class="share-link">Share on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Hero Terminal Section -->
 <div class="hero">
   <div class="terminal-window">
     <div class="terminal-header">
@@ -28,44 +51,75 @@ title: Home
       <div class="terminal-output">
         Hi, it's Cristian. Welcome to my personal website.<br>
         I write about cybersecurity, hacking, and digital sovereignty.<br>
-
       </div>
 
-      <p class="terminal-prompt">ls -la posts/</p>
+      <p class="terminal-prompt">ls posts/ -t | head -n 3</p>
       <div class="terminal-output">
-        total {{ site.posts.size }}<br>
-        drwxr-xr-x  2 cristian users 4096 {{ site.time | date: "%b %d %H:%M" }} .<br>
-        drwxr-xr-x 10 cristian users 4096 {{ site.time | date: "%b %d %H:%M" }} ..<br>
         {% for post in site.posts limit:3 %}
-        -rw-r--r--  1 cristian users {{ post.content.size | divided_by: 100 | plus: 1000 }} {{ post.date | date: "%b %d %H:%M" }} {{ post.title | slugify }}.md<br>
+        <a href="{{ post.url | relative_url }}" class="terminal-link">{{ post.title }}</a><br>
         {% endfor %}
       </div>
     </div>
   </div>
 </div>
 
-<section>
-  <h2>Latest Posts</h2>
-  <div class="post-grid">
-    {% for post in site.posts limit:6 %}
-    <article class="post-card">
-      <div class="post-header">
-        <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
-        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-      </div>
-      <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-    </article>
-    {% endfor %}
-  </div>
-
-  {% if site.posts.size > 6 %}
-  <div class="terminal-window terminal-mini">
-    <div class="terminal-body">
-      <p class="terminal-prompt">cd posts/</p>
-      <p class="terminal-prompt">
-        <a href="{{ '/posts' | relative_url }}" class="terminal-link">ls -la | more</a>
-      </p>
+<!-- Main Content with Sidebar -->
+<div class="content-wrapper">
+  <!-- Latest Posts Section -->
+  <section class="latest-posts">
+    <h2>Latest Posts</h2>
+    <div class="post-grid">
+      {% for post in site.posts limit:6 %}
+      <article class="post-card">
+        <div class="post-header">
+          <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+          <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        </div>
+        <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+        <div class="post-meta">
+          <span class="post-category">{{ post.categories | join: ", " }}</span>
+          <div class="social-share">
+            <a href="https://twitter.com/intent/tweet?text={{ post.title | urlencode }}&url={{ post.url | absolute_url }}" target="_blank" class="share-link">Share on Twitter</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ post.url | absolute_url }}" target="_blank" class="share-link">Share on LinkedIn</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
     </div>
-  </div>
-  {% endif %}
-</section>
+
+    {% if site.posts.size > 6 %}
+    <div class="terminal-window terminal-mini">
+      <div class="terminal-body">
+        <p class="terminal-prompt">cd posts/</p>
+        <p class="terminal-prompt">
+          <a href="{{ '/posts' | relative_url }}" class="terminal-link">ls -la | more</a>
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Sidebar with Trending Topics and Newsletter -->
+  <aside class="sidebar">
+    <!-- Trending Topics -->
+    <div class="trending-topics">
+      <h3>Trending Topics</h3>
+      <ul>
+        {% assign categories = site.posts | map: "categories" | join: "," | split: "," | uniq %}
+        {% for category in categories limit:5 %}
+        <li><a href="{{ '/categories/' | append: category | slugify | relative_url }}">{{ category }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="newsletter-signup">
+      <h3>Join the Network</h3>
+      <p>Subscribe for the latest cybersecurity insights and updates.</p>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </div>
+  </aside>
+</div>
