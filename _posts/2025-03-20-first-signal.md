@@ -110,5 +110,3 @@ One of the most effective strategies is to set traps. Deploy honeypots, honeyfil
 Remember: in cybersecurity, the advantage always tips toward the defender who can detect threats early. By focusing on these first signals and establishing robust monitoring, you can catch intruders before they establish persistence.
 
 In the next post, I'll dive deeper into building custom detection rules for your SIEM to automate the hunting process. Stay vigilant.
-
-*Have you ever caught an attacker during initial access? Share your experience in the comments below.*
