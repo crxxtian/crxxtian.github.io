@@ -1,4 +1,8 @@
-theme: jekyll-theme-midnight
-title: Cristian’s Cyber Blog
-description: Hacking the shadows since 2021
-author: Cris
+title: Cristian’s Cyber Lair
+description: Hacking the shadows since 2025
+author: Cristian
+plugins:
+  - jekyll-remote-theme
+webrick:
+  headers:
+    Content-Security-Policy: "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;"

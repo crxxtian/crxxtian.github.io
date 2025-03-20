@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }} | {{ page.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<nav class="stacked-menu">
+    <div class="menu-header">
+        <h1 class="glitch" data-text="> LAIR">> LAIR</h1>
+    </div>
+    <ul>
+        <li><a href="/" class="glitch" data-text="> HOME">> HOME</a></li>
+        <li><a href="/about" class="glitch" data-text="> ABOUT">> ABOUT</a></li>
+        <li><a href="/tools" class="glitch" data-text="> TOOLS">> TOOLS</a></li>
+    </ul>
+</nav>
+<div class="vines">
+    <div class="vine vine-left"></div>
+    <div class="vine vine-right"></div>
+</div>
+<main>
+    {{ content }}
+</main>
+</body>
+</html>

@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #0D0D0D;
+    color: #E6E6E6;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+main {
+    margin-left: 220px;
+    padding: 40px;
+    max-width: 900px;
+}
+
+/* Stacked Menu */
+.stacked-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: #1A3C34;
+    border-right: 2px solid #1F1F1F;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.menu-header h1 {
+    font-family: 'VT323', monospace;
+    font-size: 2em;
+    margin: 0 0 20px;
+    color: #4CAF50;
+}
+
+.stacked-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.stacked-menu li {
+    margin: 10px 0;
+}
+
+.stacked-menu a {
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+    color: #E6E6E6;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.stacked-menu a:hover {
+    color: #4CAF50;
+}
+
+/* Glitch Effect */
+.glitch {
+    position: relative;
+    animation: glitch 2s infinite;
+}
+
+.glitch:before, .glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #4CAF50;
+}
+
+.glitch:before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00ff;
+    animation: glitch-top 1s infinite linear alternate-reverse;
+}
+
+.glitch:after {
+    left: -2px;
+    text-shadow: 2px 0 #00ffff;
+    animation: glitch-bottom 1.5s infinite linear alternate-reverse;
+}
+
+/* Intro */
+.intro {
+    text-align: center;
+    padding: 20px;
+}
+
+h1, h2 {
+    font-family: 'VT323', monospace;
+    color: #4CAF50;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+/* Post Grid */
+.post-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.post-card {
+    background: #1F1F1F;
+    padding: 20px;
+    border-left: 4px solid #1A3C34;
+    transition: transform 0.3s;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Vines */
+.vines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.vine {
+    position: absolute;
+    width: 100px;
+    height: 200px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200"><path d="M50 0 Q70 50, 50 100 T50 200" stroke="%231A3C34" stroke-width="4" fill="none"/></svg>') no-repeat;
+    animation: sway 5s infinite ease-in-out;
+}
+
+.vine-left { left: 220px; top: 20%; }
+.vine-right { right: 10px; top: 40%; transform: rotate(180deg); }
+
+/* Animations */
+@keyframes sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, 0); }
+    80% { transform: translate(2px, 0); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch-top {
+    0% { clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
+    100% { clip-path: polygon(0 0, 100% 0, 100% 15%, 0 15%); }
+}
+
+@keyframes glitch-bottom {
+    0% { clip-path: polygon(0 95%, 100% 95%, 100% 100%, 0 100%); }
+    100% { clip-path: polygon(0 85%, 100% 85%, 100% 100%, 0 100%); }
+}

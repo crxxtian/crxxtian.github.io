@@ -1,23 +1,19 @@
 ---
 layout: default
+title: Home
 ---
 
 <div class="intro">
-  <h1><span class="glitch" data-text="> CYBER LAIR">> CYBER LAIR</span></h1>
-  <p>Yo, it’s Cristian. Welcome to my corner of the dark web (not *that* dark web). Cybersecurity rants, writeups, and vibes. Built from scratch ‘cause I don’t trust silos.</p>
+  <h1 class="glitch" data-text="> CYBER LAIR">> CYBER LAIR</h1>
+  <p>Yo, it’s Cristian. Cybersecurity rants from the shadows. Built this from scratch ‘cause silos can’t be trusted.</p>
 </div>
 
-<div class="vines">
-  <div class="vine vine-left"></div>
-  <div class="vine vine-right"></div>
-</div>
-
-<ul class="post-list">
+<div class="post-grid">
   {% for post in site.posts %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-      <p>{{ post.excerpt }}</p>
-    </li>
+  <div class="post-card">
+    <h2><a href="{{ post.url }}" class="glitch" data-text="{{ post.title }}">{{ post.title }}</a></h2>
+    <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+    <p>{{ post.excerpt }}</p>
+  </div>
   {% endfor %}
-</ul>
+</div>
