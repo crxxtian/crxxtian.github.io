@@ -20,7 +20,7 @@ permalink: /about/
   <div class="terminal-body">
     <p class="terminal-prompt">whoami</p>
     <div class="terminal-output typing">
-      Hey, I’m Cristian—a recent grad from Illinois State University with a B.S. in Cybersecurity. I’m a privacy advocate and cybersecurity enthusiast, diving deep into the digital shadows to uncover threats and share knowledge. This lair is my space to drop practical security tips and rants, all while keeping it tracker-free and open-source.
+      Hey, I’m Cristian. I'm a recent grad from Illinois State University with a B.S. in Cybersecurity. I’m a privacy advocate and cybersecurity enthusiast, diving deep into the digital shadows to uncover threats and share knowledge. This is my space to drop practical security tips and rants, all while keeping it open source.
     </div>
 
     <p class="terminal-prompt">skills --list</p>
