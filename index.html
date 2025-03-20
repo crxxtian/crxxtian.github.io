@@ -1,3 +1,23 @@
 ---
 layout: default
 ---
+
+<div class="intro">
+  <h1><span class="glitch" data-text="> CYBER LAIR">> CYBER LAIR</span></h1>
+  <p>Yo, it’s Cristian. Welcome to my corner of the dark web (not *that* dark web). Cybersecurity rants, writeups, and vibes. Built from scratch ‘cause I don’t trust silos.</p>
+</div>
+
+<div class="vines">
+  <div class="vine vine-left"></div>
+  <div class="vine vine-right"></div>
+</div>
+
+<ul class="post-list">
+  {% for post in site.posts %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <p>{{ post.excerpt }}</p>
+    </li>
+  {% endfor %}
+</ul>
