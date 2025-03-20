@@ -3,27 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site.title }} | {{ page.title }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}Cristian's Cyber Lair</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    {% if site.google_analytics %}
+    <!-- Google Analytics not included by design - privacy first -->
+    {% endif %}
 </head>
 <body>
-<nav class="stacked-menu">
-    <div class="menu-header">
-        <h1 class="glitch" data-text="> LAIR">> LAIR</h1>
-    </div>
-    <ul>
-        <li><a href="/" class="glitch" data-text="> HOME">> HOME</a></li>
-        <li><a href="/about" class="glitch" data-text="> ABOUT">> ABOUT</a></li>
-        <li><a href="/tools" class="glitch" data-text="> TOOLS">> TOOLS</a></li>
-    </ul>
-</nav>
+<!-- Reading Progress Bar -->
+<div class="reading-progress-bar"></div>
+
+<!-- Menu Toggle for Mobile -->
+<button class="menu-toggle" aria-label="Toggle Menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+</button>
+
+<!-- Decorative Vines -->
 <div class="vines">
     <div class="vine vine-left"></div>
     <div class="vine vine-right"></div>
 </div>
-<main>
-    {{ content }}
-</main>
+
+<div class="site-container">
+    <!-- Sidebar / Stacked Menu -->
+    <aside class="stacked-menu">
+        <div class="menu-header">
+            <h1>Cyber Lair</h1>
+            <p>Digital sovereignty & security</p>
+
+            <label class="theme-toggle">
+                <span class="sr-only">Toggle dark mode</span>
+                <input type="checkbox" class="toggle-checkbox" checked>
+                <span class="toggle-label">Toggle</span>
+            </label>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="{{ '/' | relative_url }}" class="menu-link {% if page.url == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="{{ '/posts' | relative_url }}" class="menu-link {% if page.url contains '/posts' %}active{% endif %}">All Posts</a></li>
+                <li><a href="{{ '/tools' | relative_url }}" class="menu-link {% if page.url contains '/tools' %}active{% endif %}">Tools</a></li>
+                <li><a href="{{ '/about' | relative_url }}" class="menu-link {% if page.url contains '/about' %}active{% endif %}">About</a></li>
+            </ul>
+
+            <div class="menu-separator"></div>
+
+            <ul>
+                <li><a href="https://github.com/yourusername" target="_blank" class="menu-link">GitHub</a></li>
+                <li><a href="https://twitter.com/yourusername" target="_blank" class="menu-link">Twitter</a></li>
+            </ul>
+        </nav>
+
+        <div class="menu-footer">
+            &copy; {{ site.time | date: '%Y' }} Cristian's Cyber Lair<br>
+            Built with 0% surveillance
+        </div>
+    </aside>
+
+    <main>
+        {{ content }}
+    </main>
+</div>
+
+<script>
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('menu-open');
+    });
+
+    // Reading progress bar
+    window.addEventListener('scroll', function() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.querySelector('.reading-progress-bar').style.width = scrolled + '%';
+    });
+
+    // Theme toggle functionality (if needed in the future)
+    document.querySelector('.toggle-checkbox').addEventListener('change', function() {
+        // This is a placeholder for theme switching functionality
+        console.log('Theme toggle clicked');
+    });
+</script>
 </body>
 </html>

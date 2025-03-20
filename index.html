@@ -4,16 +4,68 @@ title: Home
 ---
 
 <div class="intro">
-  <h1 class="glitch" data-text="> CYBER LAIR">> CYBER LAIR</h1>
-  <p>Yo, it’s Cristian. Cybersecurity rants from the shadows. Built this from scratch ‘cause silos can’t be trusted.</p>
+  <h1>Welcome to the Lair</h1>
+  <div class="intro-text">
+    <p>This is where I document my explorations in cybersecurity, digital sovereignty, and ethical hacking. No tracking, no compromise.</p>
+  </div>
 </div>
 
-<div class="post-grid">
-  {% for post in site.posts %}
-  <div class="post-card">
-    <h2><a href="{{ post.url }}" class="glitch" data-text="{{ post.title }}">{{ post.title }}</a></h2>
-    <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-    <p>{{ post.excerpt }}</p>
+<div class="hero">
+  <div class="terminal-window">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+      </div>
+      <span class="terminal-title">cristian@cyberlair:~$</span>
+    </div>
+    <div class="terminal-body">
+      <p class="terminal-prompt">whoami</p>
+      <div class="terminal-output">cristian</div>
+
+      <p class="terminal-prompt">cat welcome.txt</p>
+      <div class="terminal-output">
+        Yo, it's Cristian. Welcome to my cyber lair.<br>
+        I write about cybersecurity, hacking, and digital sovereignty.<br>
+        Built this space from scratch - no silos, no compromises.
+      </div>
+
+      <p class="terminal-prompt">ls -la posts/</p>
+      <div class="terminal-output">
+        total {{ site.posts.size }}<br>
+        drwxr-xr-x  2 cristian users 4096 {{ site.time | date: "%b %d %H:%M" }} .<br>
+        drwxr-xr-x 10 cristian users 4096 {{ site.time | date: "%b %d %H:%M" }} ..<br>
+        {% for post in site.posts limit:3 %}
+        -rw-r--r--  1 cristian users {{ post.content.size | divided_by: 100 | plus: 1000 }} {{ post.date | date: "%b %d %H:%M" }} {{ post.title | slugify }}.md<br>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-  {% endfor %}
 </div>
+
+<section>
+  <h2>Latest Posts</h2>
+  <div class="post-grid">
+    {% for post in site.posts limit:6 %}
+    <article class="post-card">
+      <div class="post-header">
+        <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      </div>
+      <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+    </article>
+    {% endfor %}
+  </div>
+
+  {% if site.posts.size > 6 %}
+  <div class="terminal-window terminal-mini">
+    <div class="terminal-body">
+      <p class="terminal-prompt">cd posts/</p>
+      <p class="terminal-prompt">
+        <a href="{{ '/posts' | relative_url }}" class="terminal-link">ls -la | more</a>
+      </p>
+    </div>
+  </div>
+  {% endif %}
+</section>
