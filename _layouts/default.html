@@ -24,12 +24,11 @@
 </button>
 
 <div class="site-container">
-    <!-- Sidebar / Stacked Menu -->
+    <!-- Sidebar / Custom Blended Menu -->
     <aside class="stacked-menu">
         <div class="menu-header">
             <h1>> CRIS-SEC</h1>
         </div>
-
         <nav>
             <ul>
                 {% assign home_class = "menu-link" %}
@@ -38,7 +37,7 @@
                 {% assign home_class = "menu-link active" %}
                 {% assign home_aria = 'aria-current="page"' %}
                 {% endif %}
-                <li><a href="{{ '/' | relative_url }}" class="{{ home_class }}" {{ home_aria }}>> Home</a></li>
+                <li><a href="{{ '/' | relative_url }}" class="{{ home_class }}" {{ home_aria }}>Home</a></li>
 
                 {% assign posts_class = "menu-link" %}
                 {% assign posts_aria = "" %}
@@ -46,7 +45,7 @@
                 {% assign posts_class = "menu-link active" %}
                 {% assign posts_aria = 'aria-current="page"' %}
                 {% endif %}
-                <li><a href="{{ '/posts' | relative_url }}" class="{{ posts_class }}" {{ posts_aria }}>> All Posts</a></li>
+                <li><a href="{{ '/posts' | relative_url }}" class="{{ posts_class }}" {{ posts_aria }}>All Posts</a></li>
 
                 {% assign tools_class = "menu-link" %}
                 {% assign tools_aria = "" %}
@@ -54,7 +53,7 @@
                 {% assign tools_class = "menu-link active" %}
                 {% assign tools_aria = 'aria-current="page"' %}
                 {% endif %}
-                <li><a href="{{ '/tools' | relative_url }}" class="{{ tools_class }}" {{ tools_aria }}>> Tools</a></li>
+                <li><a href="{{ '/tools' | relative_url }}" class="{{ tools_class }}" {{ tools_aria }}>Tools</a></li>
 
                 {% assign about_class = "menu-link" %}
                 {% assign about_aria = "" %}
@@ -62,14 +61,14 @@
                 {% assign about_class = "menu-link active" %}
                 {% assign about_aria = 'aria-current="page"' %}
                 {% endif %}
-                <li><a href="{{ '/about' | relative_url }}" class="{{ about_class }}" {{ about_aria }}>> About</a></li>
+                <li><a href="{{ '/about' | relative_url }}" class="{{ about_class }}" {{ about_aria }}>About</a></li>
             </ul>
 
             <div class="menu-separator"></div>
 
             <ul>
-                <li><a href="https://github.com/crxxtian" target="_blank" class="menu-link">> GitHub</a></li>
-                <li><a href="https://twitter.com/crxxtian" target="_blank" class="menu-link">> Twitter</a></li>
+                <li><a href="https://github.com/crxxtian" target="_blank" class="menu-link">GitHub</a></li>
+                <li><a href="https://twitter.com/crxxtian" target="_blank" class="menu-link">Twitter</a></li>
             </ul>
         </nav>
 
