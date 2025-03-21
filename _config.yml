@@ -1,74 +1,22 @@
-# Site settings
-title: Cristian's Cyber Lair
-description: A personal blog on cybersecurity, hacking, and digital sovereignty
-url: "https://crxxtian.github.io" # Update this with your GitHub username
+title: Cristian's Cyber Blog
+description: A digital space for cybersecurity tools, notes, and thought.
 baseurl: ""
-author: Cristian
+url: "https://crxxtian.github.io"
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-permalink: /posts/:title/
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
 
-# Pagination
-paginate: 10
-paginate_path: "/posts/page:num/"
+permalink: pretty
 
-# Collections
 collections:
   posts:
     output: true
-    permalink: /posts/:year/:month/:day/:title/
-  tools:
-    output: true
-    permalink: /tools/:path/
-
-# Defaults
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
-      layout: "post"
-      comments: false
-
-# Plugins
-plugins:
-  - jekyll-paginate
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-
-# Sass settings
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# Exclude from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
-  - .gitignore
-  - README.md
-  - LICENSE.txt
-
-# RSS feed
-feed:
-  path: atom.xml
-
-# Privacy-focused - no analytics!
-google_analytics: # Intentionally left blank for privacy
-disqus:
-  shortname: # Intentionally left blank for privacy
-
-# Social links (for SEO)
-social:
-  name: Cristian
-  links:
-    - https://github.com/crxxtian
-    - https://twitter.com/crxxtian
-
-# Set future posts to false to avoid showing scheduled posts
-future: false
+      layout: post
+      author: Cristian

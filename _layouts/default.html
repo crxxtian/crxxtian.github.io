@@ -1,110 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} | {% endif %}Cristian's Cyber Lair</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    {% if site.google_analytics %}
-    <!-- Google Analytics not included by design - privacy first -->
-    {% endif %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    {% seo %}
 </head>
 <body>
-<!-- Reading Progress Bar -->
-<div class="reading-progress-bar"></div>
-
-<!-- Menu Toggle for Mobile -->
-<button class="menu-toggle" aria-label="Toggle Menu">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-</button>
-
-<div class="site-container">
-    <!-- Sidebar / Stacked Menu -->
-    <aside class="stacked-menu">
-        <div class="menu-header">
-            <h1>> CRIS-SEC</h1>
-        </div>
-
-        <nav>
-            <ul>
-                {% assign home_class = "menu-link" %}
-                {% assign home_aria = "" %}
-                {% if page.url == '/' %}
-                {% assign home_class = "menu-link active" %}
-                {% assign home_aria = 'aria-current="page"' %}
-                {% endif %}
-                <li><a href="{{ '/' | relative_url }}" class="{{ home_class }}" {{ home_aria }}>> Home</a></li>
-
-                {% assign posts_class = "menu-link" %}
-                {% assign posts_aria = "" %}
-                {% if page.url contains '/posts' %}
-                {% assign posts_class = "menu-link active" %}
-                {% assign posts_aria = 'aria-current="page"' %}
-                {% endif %}
-                <li><a href="{{ '/posts' | relative_url }}" class="{{ posts_class }}" {{ posts_aria }}>> All Posts</a></li>
-
-                {% assign tools_class = "menu-link" %}
-                {% assign tools_aria = "" %}
-                {% if page.url contains '/tools' %}
-                {% assign tools_class = "menu-link active" %}
-                {% assign tools_aria = 'aria-current="page"' %}
-                {% endif %}
-                <li><a href="{{ '/tools' | relative_url }}" class="{{ tools_class }}" {{ tools_aria }}>> Tools</a></li>
-
-                {% assign about_class = "menu-link" %}
-                {% assign about_aria = "" %}
-                {% if page.url contains '/about' %}
-                {% assign about_class = "menu-link active" %}
-                {% assign about_aria = 'aria-current="page"' %}
-                {% endif %}
-                <li><a href="{{ '/about' | relative_url }}" class="{{ about_class }}" {{ about_aria }}>> About</a></li>
-            </ul>
-
-            <div class="menu-separator"></div>
-
-            <ul>
-                <li><a href="https://github.com/crxxtian" target="_blank" class="menu-link">> GitHub</a></li>
-                <li><a href="https://twitter.com/crxxtian" target="_blank" class="menu-link">> Twitter</a></li>
-            </ul>
-        </nav>
-
-        <div class="menu-footer">
-            © {{ site.time | date: '%Y' }} CRIS-SEC Cyber Lair<br>
-            Built with 0% surveillance
-        </div>
-    </aside>
-
-    <main>
-        {{ content }}
-    </main>
-</div>
-
-<script>
-    // Mobile menu toggle
-    document.querySelector('.menu-toggle').addEventListener('click', function() {
-        document.body.classList.toggle('menu-open');
-    });
-
-    // Reading progress bar
-    window.addEventListener('scroll', function() {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.querySelector('.reading-progress-bar').style.width = scrolled + '%';
-    });
-
-    // Theme toggle functionality (placeholder)
-    const themeToggle = document.querySelector('.toggle-checkbox');
-    if (themeToggle) {
-        document.querySelector('.toggle-checkbox').addEventListener('change', function() {
-            console.log('Theme toggle clicked');
-        });
-    }
-</script>
+{{ content }}
 </body>
 </html>
