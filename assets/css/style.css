@@ -1,4 +1,4 @@
-/* Variables */
+/* Root Variables */
 :root {
     --bg: #0a0a0a;
     --olive: #708238;
@@ -17,52 +17,128 @@ body, html {
     background: var(--bg);
     color: var(--text);
     font-family: var(--font);
+    overflow: hidden;
+}
+
+/* Subtle Background Animation */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(112, 130, 56, 0.1) 2%, transparent 98%);
+    animation: cyberGrid 10s infinite linear alternate;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+@keyframes cyberGrid {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
 }
 
 /* Layout */
-.screen {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    padding: 2rem;
+    height: 100vh;
+    width: 100%;
 }
 
-.terminal-box {
-    text-align: center;
-    max-width: 700px;
-    padding: 2rem;
-    border: 2px solid var(--olive);
-    border-radius: 8px;
-    background: #111;
-    box-shadow: 0 0 20px rgba(112, 130, 56, 0.3);
+/* Left Column - Stacked Navigation */
+.nav-column {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.terminal-box h1 {
-    font-size: 2.5rem;
+.menu {
+    list-style: none;
+    text-align: right;
+}
+
+.menu li {
+    margin-bottom: 15px;
+}
+
+.menu a {
+    font-size: 1.8rem;
     color: var(--olive);
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-}
-
-.terminal-box p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: var(--text);
-}
-
-/* Button */
-.enter-btn {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    color: var(--bg);
-    background: var(--olive);
     text-decoration: none;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
-.enter-btn:hover {
-    background: #556b2f;
+
+/* Cyberpunk Animated Underline */
+.menu a::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--olive);
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu a:hover {
     color: var(--text);
+    text-shadow: 0 0 10px var(--olive);
+}
+
+.menu a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Right Column - Animated Title */
+.title-column {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fade-title {
+    font-size: 4rem;
+    color: var(--olive);
+    text-transform: uppercase;
+    animation: fadeGlitch 3s infinite alternate ease-in-out;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* Small Depth Effect on Hover */
+.fade-title:hover {
+    transform: scale(1.05);
+}
+
+/* Fading Animation */
+@keyframes fadeGlitch {
+    0% { opacity: 0.2; text-shadow: 0 0 5px var(--olive); }
+    50% { opacity: 1; text-shadow: 0 0 15px var(--olive); }
+    100% { opacity: 0.2; text-shadow: 0 0 5px var(--olive); }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav-column, .title-column {
+        width: 100%;
+    }
+    .menu {
+        text-align: center;
+    }
+    .fade-title {
+        font-size: 3rem;
+    }
 }
