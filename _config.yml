@@ -13,10 +13,11 @@ permalink: pretty
 collections:
   posts:
     output: true
+    permalink: /blog/:title/
 defaults:
   - scope:
       path: ""
-      type: "posts"
+      type: "blog"
     values:
       layout: post
       author: Cristian
