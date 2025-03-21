@@ -6,7 +6,7 @@
     --font: 'Share Tech Mono', monospace;
 }
 
-/* Base Reset */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -31,6 +31,7 @@ body, html {
     background: var(--bg);
     transition: opacity 0.6s ease-out;
 }
+
 .terminal-box {
     text-align: center;
     max-width: 700px;
@@ -40,17 +41,21 @@ body, html {
     background: #111;
     box-shadow: 0 0 20px rgba(112, 130, 56, 0.3);
 }
+
 .terminal-box h1 {
     font-size: 2.5rem;
     color: var(--olive);
     margin-bottom: 1rem;
     letter-spacing: 1px;
 }
+
 .terminal-box p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     color: var(--text);
 }
+
+/* Enter Button */
 .enter-btn {
     padding: 10px 20px;
     font-size: 1rem;
@@ -64,7 +69,7 @@ body, html {
     background: #556b2f;
 }
 
-/* Animation */
+/* Fade Out Animation */
 .fade-out {
     opacity: 0;
 }
@@ -99,20 +104,21 @@ body, html {
     list-style: none;
     text-align: right;
 }
+
 .menu li {
     margin-bottom: 15px;
 }
+
 .menu a {
     font-size: 1.8rem;
     color: var(--olive);
     text-decoration: none;
     position: relative;
+    display: inline-block;
     transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
-.menu a:hover {
-    color: var(--text);
-    text-shadow: 0 0 10px var(--olive);
-}
+
+/* Cyberpunk Underline Animation */
 .menu a::after {
     content: "";
     display: block;
@@ -125,6 +131,12 @@ body, html {
     transform: scaleX(0);
     transition: transform 0.3s ease-in-out;
 }
+
+.menu a:hover {
+    color: var(--text);
+    text-shadow: 0 0 10px var(--olive);
+}
+
 .menu a:hover::after {
     transform: scaleX(1);
 }
@@ -143,47 +155,14 @@ body, html {
     animation: fadeGlitch 3s infinite alternate ease-in-out;
 }
 
-/* POSTS PAGE - Terminal Look */
-.posts-container {
-    max-width: 800px;
-    margin: 80px auto;
-    padding: 20px;
-    background: #111;
-    border: 2px solid var(--olive);
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(112, 130, 56, 0.5);
-}
-.posts-title {
-    font-size: 2rem;
-    color: var(--olive);
-    text-align: center;
-}
-.post-list {
-    list-style: none;
-    padding: 0;
-}
-.post-list li {
-    padding: 10px 0;
-    font-size: 1.2rem;
-    border-bottom: 1px solid rgba(112, 130, 56, 0.3);
-}
-.post-list a {
-    color: var(--text);
-    text-decoration: none;
-    display: block;
-    transition: color 0.3s;
-}
-.post-list a:hover {
-    color: var(--olive);
-    text-shadow: 0 0 5px var(--olive);
-}
-
-/* Animation Keyframes */
+/* Glitch Effect */
 @keyframes fadeGlitch {
     0% { opacity: 0.2; text-shadow: 0 0 5px var(--olive); }
     50% { opacity: 1; text-shadow: 0 0 15px var(--olive); }
     100% { opacity: 0.2; text-shadow: 0 0 5px var(--olive); }
 }
+
+/* Animation Keyframes */
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
