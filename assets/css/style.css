@@ -6,13 +6,14 @@
     --font: 'Share Tech Mono', monospace;
 }
 
-/* Reset */
+/* Base Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body, html {
+html, body {
+    width: 100%;
     height: 100%;
     background: var(--bg);
     color: var(--text);
@@ -20,128 +21,40 @@ body, html {
     overflow: hidden;
 }
 
-/* Welcome Screen */
-.welcome-screen {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--bg);
-    transition: opacity 0.6s ease-out;
-}
-
-.terminal-box {
-    text-align: center;
-    max-width: 700px;
-    padding: 2rem;
-    border: 2px solid var(--olive);
-    border-radius: 8px;
-    background: #111;
-    box-shadow: 0 0 20px rgba(112, 130, 56, 0.3);
-}
-
-.terminal-box h1 {
-    font-size: 2.5rem;
-    color: var(--olive);
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-}
-
-.terminal-box p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: var(--text);
-}
-
-/* Enter Button */
-.enter-btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background: var(--olive);
-    border: none;
-    cursor: pointer;
-    color: var(--bg);
-    border-radius: 5px;
-}
-.enter-btn:hover {
-    background: #556b2f;
-}
-
-/* Fade Out Animation */
-.fade-out {
-    opacity: 0;
-}
-.main-container {
-    display: none;
-    opacity: 0;
-}
-.fade-in {
-    display: flex;
-    opacity: 1;
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-/* Layout */
+/* Main Container */
 .main-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
+    opacity: 0;  /* Start hidden */
+    transform: translateY(10px); /* Slight shift down */
+    animation: fadeIn 1.2s ease-out forwards;
 }
 
-/* Left Column - Stacked Navigation */
+/* Left Column: Stacked Menu */
 .nav-column {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .menu {
     list-style: none;
     text-align: right;
 }
-
 .menu li {
     margin-bottom: 15px;
 }
-
 .menu a {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--olive);
     text-decoration: none;
-    position: relative;
-    display: inline-block;
-    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
-
-/* Cyberpunk Underline Animation */
-.menu a::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: var(--olive);
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
-}
-
 .menu a:hover {
     color: var(--text);
-    text-shadow: 0 0 10px var(--olive);
 }
 
-.menu a:hover::after {
-    transform: scaleX(1);
-}
-
-/* Right Column - Animated Title */
+/* Right Column: Title */
 .title-column {
     width: 50%;
     display: flex;
@@ -149,21 +62,18 @@ body, html {
     align-items: center;
 }
 .fade-title {
-    font-size: 4rem;
+    font-size: 3rem;
     color: var(--olive);
-    text-transform: uppercase;
-    animation: fadeGlitch 3s infinite alternate ease-in-out;
 }
 
-/* Glitch Effect */
-@keyframes fadeGlitch {
-    0% { opacity: 0.2; text-shadow: 0 0 5px var(--olive); }
-    50% { opacity: 1; text-shadow: 0 0 15px var(--olive); }
-    100% { opacity: 0.2; text-shadow: 0 0 5px var(--olive); }
-}
-
-/* Animation Keyframes */
+/* Fade-in Effect */
 @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
