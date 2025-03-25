@@ -1,19 +1,12 @@
-title: Cristian's Cyber Blog
-description: A digital space for cybersecurity tools, notes, and thought.
+title: Cyber Lair
+description: Digital threat logs.
 baseurl: ""
-url: "https://crxxtian.github.io"
-
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+url: "https://yourusername.github.io"
 
 permalink: /blog/:title/
+markdown: kramdown
+future: true
 
-defaults:
-  - scope:
-      path: ""
-      type: "post"
-    values:
-      layout: post
-      author: Cristian
+collections:
+  posts:
+    output: true

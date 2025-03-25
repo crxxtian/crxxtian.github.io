@@ -304,3 +304,18 @@ html, body {
         flex: 0 0 80%;
     }
 }
+.terminal-body {
+    padding: 1rem;
+    background: #0d0d0d;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+.terminal-prompt {
+    color: var(--olive);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
