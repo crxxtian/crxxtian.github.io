@@ -280,3 +280,8 @@ html, body {
         flex: 0 0 80%;
     }
 }
+.page-content {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
