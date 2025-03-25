@@ -4,12 +4,9 @@ layout: default
 
 <div class="content-column">
     <div class="terminal-container">
-
-        <!-- Post Title & Date -->
         <div class="post-title">{{ page.title }}</div>
         <p class="post-date">Published: {{ page.date | date: "%B %d, %Y" }}</p>
 
-        <!-- Optional Tags -->
         {% if page.tags %}
         <p class="post-meta">Tags:
             {% for tag in page.tags %}
@@ -19,15 +16,12 @@ layout: default
         </p>
         {% endif %}
 
-        <!-- Post Body -->
         <div class="post-content">
             {{ content }}
         </div>
 
-        <!-- Back Link -->
         <p style="margin-top: 2rem;">
             <a class="read-more" href="/blog">> Back to Blog</a>
         </p>
-
     </div>
 </div>

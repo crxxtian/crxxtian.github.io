@@ -35,19 +35,29 @@ html, body {
     }
 }
 
-/* Main Container */
-.main-container {
+/* Main Container & Header */
+.main-header {
     display: flex;
-    min-height: 100vh;
-    width: 100%;
-    opacity: 0;
-    transform: translateY(10px);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--bg);
+}
+.main-header.fade-in {
     animation: fadeIn 1.2s ease-out forwards;
+}
+
+/* Content Area */
+.content-area {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
 /* Left Column: Stacked Menu */
 .nav-column {
-    width: 50%;
+    flex: 1 1 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,16 +83,12 @@ html, body {
             text-shadow var(--transition-speed) ease-in-out,
             letter-spacing var(--transition-speed) ease-in-out;
 }
-
-/* Menu Hover Effect - Bold, Expand, and Glow */
 .menu a:hover {
     transform: scale(1.1);
     font-weight: bold;
     text-shadow: var(--glow);
     letter-spacing: 1px;
 }
-
-/* Cyberpunk Underline Effect */
 .menu a::after {
     content: "";
     display: block;
@@ -102,7 +108,7 @@ html, body {
 
 /* Right Column: Title */
 .title-column {
-    width: 50%;
+    flex: 1 1 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,16 +119,13 @@ html, body {
     text-shadow: var(--glow);
 }
 
-/* Content Column (Centers your main content) */
+/* Blog Post Page Styles */
 .content-column {
-    max-width: 1000px;  /* Wider for readability */
     width: 90%;
-    margin: 4rem auto;
+    max-width: 1000px;
+    margin: 2rem auto;
     padding: 2rem;
-    background: transparent; /* or #111 if you want a panel */
 }
-
-/* Post Title & Date */
 .post-title {
     font-size: 2.5rem;
     color: var(--olive);
@@ -135,48 +138,12 @@ html, body {
     margin-bottom: 20px;
     opacity: 0.7;
 }
-
-/* Post Content (styling your markdown) */
 .post-content {
     font-size: 1.2rem;
     line-height: 1.7;
     color: var(--text);
+    max-width: 800px;
     margin: 1rem auto;
-}
-.post-content h2,
-.post-content h3,
-.post-content h4,
-.post-content h5,
-.post-content h6 {
-    color: var(--olive);
-    text-shadow: var(--glow);
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-}
-.post-content p {
-    margin-bottom: 1rem;
-}
-.post-content blockquote {
-    margin: 1.5rem;
-    padding: 1rem 1.5rem;
-    border-left: 3px solid var(--olive);
-    opacity: 0.85;
-    font-style: italic;
-}
-.post-content code {
-    background: rgba(255,255,255,0.06);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    color: var(--text);
-}
-.post-content pre code {
-    background: #111;
-    display: block;
-    padding: 1rem;
-    border: 1px solid var(--olive);
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    overflow-x: auto;
 }
 
 /* Horizontal Slider Container */
@@ -206,7 +173,7 @@ html, body {
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: var(--text);
-    min-height: 220px; /* ensures some uniform height */
+    min-height: 220px;
 }
 .post-slide:hover {
     transform: scale(1.05);
