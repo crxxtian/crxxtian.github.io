@@ -11,7 +11,7 @@ excerpt: A deep dive into recognizing the subtle signs of a network breach befor
 
 In the digital wilderness, the most dangerous predators make the least noise. Modern threat actors are masters of stealth, often lingering in compromised networks for months before making their presence known. By the time conventional security alerts trigger, it's usually too late—the attackers have already established multiple persistence mechanisms and exfiltrated your most valuable data.
 
-But there are always signals—if you know what to look for.
+But there are always signals, if you know what to look for.
 
 ## The Initial Access Phase
 
