@@ -1,6 +1,6 @@
 title: Cristian's Cyber Blog
 description: A digital space for cybersecurity tools, notes, and thought.
-baseurl: ""
+baseurl: "" # Leave as-is for GitHub Pages
 url: "https://crxxtian.github.io"
 
 theme: minima
@@ -8,10 +8,12 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-permalink: pretty
+permalink: /blog/:title/
 
 defaults:
   - scope:
       path: ""
+      type: "posts"
     values:
+      layout: post
       author: Cristian
