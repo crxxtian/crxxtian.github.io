@@ -20,6 +20,8 @@ permalink: /blog/
         <h1 class="post-title">Blog</h1>
         <p class="post-date">All Posts</p>
 
+        <p>Total Posts: {{ site.posts | size }}</p>
+
         {% if site.posts.size > 0 %}
         <div class="post-slider">
             {% for post in site.posts %}
@@ -36,5 +38,7 @@ permalink: /blog/
         {% endif %}
 
     </div>
+
+
 
 </div>
