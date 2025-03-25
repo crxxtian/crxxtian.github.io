@@ -1,239 +1,335 @@
 /* ========================
-   Cyber Lair v2 CSS
-   ======================== */
-
+   Global Variables & Reset
+========================= */
 :root {
     --bg: #0a0a0a;
-    --bg-alt: #111;
-    --text: #e0e0e0;
-    --accent: #00ffae;
-    --accent-dark: #00d293;
-    --muted: #999;
-    --font: 'Share Tech Mono', monospace;
+    --fg: #e5e5e5;
+    --accent: #00ffc3;
+    --accent-soft: #1affc1;
+    --card-bg: #111;
+    --font-main: 'Fira Code', monospace;
     --glow: 0 0 12px var(--accent);
+    --glow-strong: 0 0 20px var(--accent);
     --radius: 12px;
     --transition: 0.3s ease-in-out;
 }
 
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-body, html {
+html, body {
     width: 100%;
     height: 100%;
     background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    scroll-behavior: smooth;
+    color: var(--fg);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    line-height: 1.75;
+    font-size: 16px;
 }
 
-
-/* GLOBALS */
+/* ========================
+   Links & Selection
+========================= */
 a {
     color: var(--accent);
     text-decoration: none;
-    transition: color var(--transition);
+    transition: all var(--transition);
 }
 a:hover {
-    color: var(--text);
+    color: white;
     text-shadow: var(--glow);
 }
-
-p {
-    line-height: 1.7;
-    color: var(--muted);
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+::selection {
+    background: var(--accent);
+    color: #000;
 }
 
-h1, h2, h3, h4 {
-    font-weight: bold;
-    color: var(--accent);
-    text-shadow: var(--glow);
-}
-
-code {
-    background: #222;
-    padding: 2px 6px;
-    border-radius: 5px;
-    color: var(--accent);
-    font-size: 0.9rem;
-}
-
-.container {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-}
-
-/* HEADER */
-header {
-    padding: 2rem;
+/* ========================
+   Navigation
+========================= */
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #0c0c0c;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    padding: 1.5rem 2rem;
+    max-width: 1200px;
+    margin: auto;
 }
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-}
-
-.navbar a {
+.nav-left {
+    font-weight: bold;
     font-size: 1.1rem;
-    position: relative;
+    color: var(--accent);
 }
-
-.navbar a::after {
+.nav-right a {
+    margin-left: 1.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color var(--transition);
+}
+.nav-right a::after {
     content: "";
-    position: absolute;
+    display: block;
     width: 0%;
     height: 2px;
-    background: var(--accent);
+    background-color: var(--accent);
+    position: absolute;
     left: 0;
     bottom: -4px;
-    transition: all var(--transition);
+    transition: width 0.3s;
 }
-
-.navbar a:hover::after {
+.nav-right a:hover::after {
     width: 100%;
 }
 
-/* HERO */
-.hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* ========================
+   Hero / Landing Section
+========================= */
+.hero-section {
+    max-width: 960px;
+    margin: 4rem auto;
+    padding: 0 2rem;
     text-align: center;
-    padding: 6rem 2rem 3rem;
-    background: linear-gradient(to bottom, #0a0a0a, #111);
 }
-
-.hero h1 {
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+.hero-title {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--accent);
+    text-shadow: var(--glow-strong);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--accent);
+    width: 0;
+    animation: typing 2s steps(30, end) forwards;
 }
-
-.hero p {
+.hero-subtitle {
+    margin-top: 1rem;
     font-size: 1.2rem;
+    opacity: 0.85;
+}
+.hero-intro {
+    margin: 2rem auto 0;
+    font-size: 1rem;
     max-width: 720px;
-    margin-bottom: 2rem;
-    color: var(--muted);
+    opacity: 0.9;
 }
-
-.cta-buttons {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
+.hero-buttons {
+    margin-top: 2.5rem;
 }
-
-.cta-buttons a {
+.hero-buttons a {
+    display: inline-block;
+    margin: 0 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
     background: var(--accent);
     color: #000;
-    padding: 0.8rem 1.5rem;
-    border-radius: var(--radius);
     font-weight: bold;
-    transition: all var(--transition);
-}
-
-.cta-buttons a:hover {
-    background: var(--accent-dark);
-    color: #fff;
     box-shadow: var(--glow);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.hero-buttons a:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-strong);
 }
 
-/* SECTION STYLING */
+/* ========================
+   Expertise / Card Sections
+========================= */
 .section {
     padding: 4rem 2rem;
-    border-top: 1px solid #1c1c1c;
-    background: var(--bg-alt);
+    max-width: 1200px;
+    margin: auto;
 }
-
 .section-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
     color: var(--accent);
+    margin-bottom: 2rem;
+    text-shadow: var(--glow);
 }
-
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
 }
-
 .card {
-    background: #1a1a1a;
-    padding: 2rem;
-    border: 1px solid #333;
+    background: var(--card-bg);
+    padding: 1.5rem;
     border-radius: var(--radius);
-    box-shadow: 0 0 10px rgba(0, 255, 174, 0.1);
-    transition: all var(--transition);
+    border: 1px solid var(--accent-soft);
+    box-shadow: 0 0 10px rgba(0, 255, 195, 0.15);
+    transition: transform var(--transition), box-shadow var(--transition);
 }
-
 .card:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 174, 0.4);
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(0, 255, 195, 0.4);
 }
-
 .card h3 {
     margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-shadow: var(--glow);
+}
+.card p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    line-height: 1.6;
 }
 
-.tag {
+/* ========================
+   Blog Post Preview (Slider)
+========================= */
+.post-slider {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    user-select: none;
+    cursor: grab;
+    margin-top: 2rem;
+}
+.post-slider:active {
+    cursor: grabbing;
+}
+.post-slide {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+    background: #111;
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: 0 0 15px rgba(112, 130, 56, 0.5);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--fg);
+    min-height: 220px;
+}
+.post-slide:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(112, 130, 56, 0.8);
+}
+.post-slide h2 a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.post-slide h2 a:hover {
+    color: var(--fg);
+    text-shadow: 0 0 10px var(--accent);
+}
+.post-slide .read-more {
     display: inline-block;
-    background: var(--accent-dark);
-    color: #000;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    margin-right: 0.4rem;
-    margin-bottom: 0.4rem;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--accent);
+    transition: text-shadow 0.3s ease;
+}
+.post-slide .read-more:hover {
+    text-shadow: 0 0 8px var(--accent);
+}
+.post-slide p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
 }
 
-/* FOOTER */
+/* ========================
+   Terminal-like Container (Single Post)
+========================= */
+.terminal-container {
+    background: #111;
+    padding: 20px;
+    border: 2px solid var(--accent);
+    box-shadow: var(--glow);
+    border-radius: var(--radius);
+    max-width: 800px;
+    margin: 2rem auto;
+}
+.terminal-header {
+    display: flex;
+    align-items: center;
+    background: #222;
+    padding: 10px;
+    border-bottom: 2px solid var(--accent);
+}
+.terminal-dots {
+    display: flex;
+    gap: 6px;
+    margin-right: 10px;
+}
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    background: #555;
+    border-radius: 50%;
+}
+.terminal-title {
+    color: var(--fg);
+    font-size: 0.9rem;
+}
+
+/* ========================
+   Footer
+========================= */
 footer {
     padding: 2rem;
     text-align: center;
-    background: #0c0c0c;
-    color: var(--muted);
     font-size: 0.9rem;
-    border-top: 1px solid #1c1c1c;
+    opacity: 0.5;
+    border-top: 1px solid #222;
+    margin-top: 4rem;
 }
 
-/* SCROLLBAR */
+/* ========================
+   Custom Scrollbar
+========================= */
 ::-webkit-scrollbar {
     width: 10px;
 }
-
 ::-webkit-scrollbar-track {
-    background: #0a0a0a;
+    background: var(--bg);
 }
-
 ::-webkit-scrollbar-thumb {
     background: var(--accent);
     border-radius: 5px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-dark);
+    background: var(--accent-soft);
 }
 
-/* RESPONSIVE */
+/* ========================
+   Responsive Tweaks
+========================= */
+@media (max-width: 1024px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    .nav-right a {
+        margin: 0 0.75rem;
+    }
+}
 @media (max-width: 768px) {
-    .hero h1 {
+    .hero-title {
         font-size: 2.5rem;
     }
-    .cta-buttons {
-        justify-content: center;
+    .hero-buttons a {
+        margin: 0.5rem 0;
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .post-slide {
+        flex: 0 0 80%;
     }
 }

@@ -4,73 +4,36 @@ title: Home
 ---
 
 <section class="hero">
-    <div class="hero-content">
-        <h1 class="glow">Hey, I'm Crxxtian_</h1>
-        <p class="tagline">Cybersecurity enthusiast | Threat hunter | Digital explorer</p>
-        <p class="bio">
-            I specialize in security research, cyber threat analysis, and building creative tools for the digital frontier.
-            I'm passionate about making security accessible and rad as hell.
-        </p>
-        <div class="cta-buttons">
-            <a href="/blog" class="btn">> Read My Blog</a>
-            <a href="/portfolio" class="btn">> View Portfolio</a>
-        </div>
+    <h1 class="hero-title">Hey, I'm Crxxtian_</h1>
+    <p class="hero-subtitle">
+        Aspiring Security Engineer · Threat Hunter · Writing logs in public
+    </p>
+
+    <p class="hero-intro">
+        I break things (legally), write about digital threats, and build tools to defend the modern frontier. I’m passionate about making security more accessible, more fun, and more badass.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="/blog" class="button-primary">> Read My Blog</a>
+        <a href="/portfolio" class="button-secondary">> View Portfolio</a>
     </div>
 </section>
 
-<section class="section">
-    <h2 class="section-title">Expertise</h2>
-    <div class="card-grid">
-        <div class="card">
-            <h3>🛡️ Threat Detection</h3>
-            <p>Creating detections for stealthy threat actors using logs, anomaly patterns, and attacker behavior.</p>
-        </div>
-        <div class="card">
-            <h3>🕵️‍♂️ Adversary Simulation</h3>
-            <p>Simulating attacks to learn how they work — and how to stop them. Red team mindset. Blue team spirit.</p>
-        </div>
-        <div class="card">
-            <h3>🔧 Tool Development</h3>
-            <p>Building command-line tools, scripts, and cool utilities to make threat hunting fast and fun.</p>
-        </div>
-    </div>
-</section>
+<section class="section-highlight">
+    <h2 class="section-title">Latest Research</h2>
 
-<section class="section">
-    <h2 class="section-title">Latest Transmissions</h2>
-    <div class="card-grid">
+    <div class="post-preview-list">
         {% for post in site.posts limit:3 %}
-        <div class="card">
+        <div class="post-preview">
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-            <p class="post-meta">📅 {{ post.date | date: "%B %d, %Y" }}</p>
+            <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
             <p>{{ post.excerpt }}</p>
-            <a class="read-more" href="{{ post.url }}">> Read Full Post</a>
+            <a class="read-more" href="{{ post.url }}">→ Read More</a>
         </div>
         {% endfor %}
     </div>
-    <div style="text-align: center; margin-top: 2rem;">
-        <a href="/blog" class="btn">> See All Posts</a>
-    </div>
-</section>
 
-<section class="section">
-    <h2 class="section-title">Certifications & Projects</h2>
-    <div class="card-grid">
-        <div class="card">
-            <h3>📜 Cybersecurity Certifications</h3>
-            <ul>
-                <li>Google Cybersecurity Certificate</li>
-                <li>TryHackMe: Top 1%</li>
-                <li>IBM Cyber Analyst Badge</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h3>🔍 Featured Projects</h3>
-            <ul>
-                <li><a href="#">SignalSniffer - Beacon Pattern Detector</a></li>
-                <li><a href="#">NetGrep - Live Threat Intel Matcher</a></li>
-                <li><a href="#">Post Exploitation Cheat Sheets</a></li>
-            </ul>
-        </div>
+    <div class="view-all-container">
+        <a class="view-all" href="/blog">View all posts →</a>
     </div>
 </section>
