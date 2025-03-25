@@ -23,6 +23,18 @@ html, body {
     overflow-x: hidden;
 }
 
+/* Fade-in Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Main Container */
 .main-container {
     display: flex;
@@ -55,10 +67,11 @@ html, body {
     display: inline-block;
     padding: 5px 10px;
     position: relative;
-    transition: transform var(--transition-speed) ease-in-out,
-    font-weight var(--transition-speed) ease-in-out,
-    text-shadow var(--transition-speed) ease-in-out,
-    letter-spacing var(--transition-speed) ease-in-out;
+    transition:
+            transform var(--transition-speed) ease-in-out,
+            font-weight var(--transition-speed) ease-in-out,
+            text-shadow var(--transition-speed) ease-in-out,
+            letter-spacing var(--transition-speed) ease-in-out;
 }
 
 /* Menu Hover Effect - Bold, Expand, and Glow */
@@ -100,24 +113,16 @@ html, body {
     text-shadow: var(--glow);
 }
 
-/* Fade-in Effect */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Content Column (Centers your main content) */
+.content-column {
+    max-width: 1000px;  /* Wider for readability */
+    width: 90%;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: transparent; /* or #111 if you want a panel */
 }
 
-/* Blog Post Page */
-.content-column {
-    width: 60%;
-    padding: 40px;
-    margin: auto;
-}
+/* Post Title & Date */
 .post-title {
     font-size: 2.5rem;
     color: var(--olive);
@@ -130,41 +135,48 @@ html, body {
     margin-bottom: 20px;
     opacity: 0.7;
 }
+
+/* Post Content (styling your markdown) */
 .post-content {
     font-size: 1.2rem;
+    line-height: 1.7;
     color: var(--text);
-    line-height: 1.6;
-    text-align: left;
-    max-width: 800px;
-    margin: auto;
+    margin: 1rem auto;
 }
-
-/* Slider Wrapper and Buttons */
-.slider-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    color: var(--olive);
+    text-shadow: var(--glow);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
-
-.slider-btn {
-    background-color: var(--olive);
-    border: none;
-    color: var(--bg);
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    transition: box-shadow 0.3s, transform 0.2s;
+.post-content p {
+    margin-bottom: 1rem;
 }
-
-.slider-btn:hover {
-    box-shadow: var(--glow);
-    transform: scale(1.1);
+.post-content blockquote {
+    margin: 1.5rem;
+    padding: 1rem 1.5rem;
+    border-left: 3px solid var(--olive);
+    opacity: 0.85;
+    font-style: italic;
 }
-
-.slider-btn:active {
-    transform: scale(0.95);
+.post-content code {
+    background: rgba(255,255,255,0.06);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    color: var(--text);
+}
+.post-content pre code {
+    background: #111;
+    display: block;
+    padding: 1rem;
+    border: 1px solid var(--olive);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow-x: auto;
 }
 
 /* Horizontal Slider Container */
@@ -177,9 +189,9 @@ html, body {
     scroll-behavior: smooth;
     user-select: none;
     cursor: grab;
+    margin-top: 2rem;
 }
-
-.post-slider.active {
+.post-slider:active {
     cursor: grabbing;
 }
 
@@ -194,13 +206,12 @@ html, body {
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: var(--text);
+    min-height: 220px; /* ensures some uniform height */
 }
-
 .post-slide:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px rgba(112, 130, 56, 0.8);
 }
-
 .post-slide h2 a {
     color: var(--olive);
     text-decoration: none;
@@ -210,7 +221,6 @@ html, body {
     color: var(--text);
     text-shadow: 0 0 10px var(--olive);
 }
-
 .post-slide .read-more {
     display: inline-block;
     margin-top: 0.5rem;
@@ -222,14 +232,13 @@ html, body {
 .post-slide .read-more:hover {
     text-shadow: 0 0 8px var(--olive);
 }
-
 .post-slide p {
     font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 1rem;
 }
 
-/* Terminal-like Container */
+/* Terminal-like Container (for single post pages) */
 .terminal-container {
     background: #111;
     padding: 20px;
@@ -237,7 +246,7 @@ html, body {
     box-shadow: var(--glow);
     border-radius: 8px;
     max-width: 800px;
-    margin: auto;
+    margin: 2rem auto;
 }
 .terminal-header {
     display: flex;
@@ -304,18 +313,3 @@ html, body {
         flex: 0 0 80%;
     }
 }
-.terminal-body {
-    padding: 1rem;
-    background: #0d0d0d;
-    font-family: var(--font);
-    font-size: 0.9rem;
-    color: var(--text);
-    line-height: 1.4;
-}
-
-.terminal-prompt {
-    color: var(--olive);
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-

@@ -6,13 +6,15 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ site.description }}" />
 
+    <!-- Link to your main CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-
+<!-- Main Container includes the left nav and the content area -->
 <div class="main-container fade-in">
-    <!-- Left Menu -->
+
+    <!-- Left Column: Stacked Menu -->
     <div class="nav-column">
         <ul class="menu">
             <li><a href="/">> home</a></li>
@@ -23,12 +25,15 @@
         </ul>
     </div>
 
-    <!-- Right Side: Title + Page Content -->
+    <!-- Right Column: Page Title -->
     <div class="title-column">
         <h1 class="fade-title">{{ page.title }}</h1>
     </div>
-    {{ content }}
-</div>
+
+</div> <!-- end main-container -->
+
+<!-- Render the page/post content below -->
+{{ content }}
 
 </body>
 </html>
