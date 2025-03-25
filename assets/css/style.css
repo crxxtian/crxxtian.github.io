@@ -281,7 +281,8 @@ html, body {
     }
 }
 .page-content {
-    padding: 2rem;
-    max-width: 1000px;
+    padding: 3rem 2rem;
+    max-width: 1200px;
     margin: 0 auto;
 }
+
