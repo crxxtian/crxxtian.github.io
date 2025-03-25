@@ -20,6 +20,7 @@ permalink: /blog/
         <h1 class="post-title">Blog</h1>
         <p class="post-date">All Posts</p>
 
+        {% if site.posts.size > 0 %}
         <div class="post-slider">
             {% for post in site.posts %}
             <div class="post-slide">
@@ -30,6 +31,9 @@ permalink: /blog/
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <p class="post-meta">No blog posts found yet. Coming soon!</p>
+        {% endif %}
 
     </div>
 
