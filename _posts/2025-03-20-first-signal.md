@@ -2,10 +2,9 @@
 layout: post
 title: "First Signal"
 date: 2025-03-20
-categories: security
-tags: [intrusion-detection, network-security, threat-hunting]
 excerpt: A deep dive into recognizing the subtle signs of a network breach before attackers establish persistence.
 ---
+
 
 # First Signal: Detecting the Silent Intruders
 
