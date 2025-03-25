@@ -4,32 +4,18 @@ title: Blog
 permalink: /blog/
 ---
 
-<div class="container">
-    <!-- Left: Stacked Menu -->
-    <div class="nav-column">
-        <ul class="menu">
-            <li><a href="/home">> home</a></li>
-            <li><a href="/blog">> blog</a></li>
-            <li><a href="/portfolio">> portfolio</a></li>
-            <li><a href="/about">> about</a></li>
-            <li><a href="/now">> now</a></li>
-        </ul>
-    </div>
+<div class="content-column">
+    <h1 class="post-title">Blog</h1>
+    <p class="post-date">All Cyber Lair Posts</p>
 
-    <!-- Right: Blog Post List -->
-    <div class="content-column">
-        <h1 class="post-title">Blog</h1>
-        <p class="post-date">All Cyber Lair Posts</p>
-
-        <div class="post-list">
-            {% for post in site.posts %}
-            <div class="post-item">
-                <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-                <p class="post-meta">Published: {{ post.date | date: "%B %d, %Y" }}</p>
-                <p>{{ post.excerpt }}</p>
-                <a class="read-more" href="{{ post.url }}">> Read More</a>
-            </div>
-            {% endfor %}
+    <div class="post-list">
+        {% for post in site.posts %}
+        <div class="post-item">
+            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <p class="post-meta">Published: {{ post.date | date: "%B %d, %Y" }}</p>
+            <p>{{ post.excerpt }}</p>
+            <a class="read-more" href="{{ post.url }}">> Read More</a>
         </div>
+        {% endfor %}
     </div>
 </div>
