@@ -4,20 +4,17 @@ baseurl: ""
 url: "https://crxxtian.github.io"
 
 theme: minima
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-permalink: pretty
+permalink: /blog/:title/
 
-collections:
-  posts:
-    output: true
-    permalink: /blog/:title/
 defaults:
   - scope:
       path: ""
-      type: "blog"
+      type: "posts"
     values:
       layout: post
       author: Cristian
