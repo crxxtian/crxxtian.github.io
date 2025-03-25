@@ -5,33 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ site.description }}" />
-
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="main-container fade-in">
-    <!-- Left Menu -->
-    <div class="nav-column">
-        <ul class="menu">
-            <li><a href="/">> home</a></li>
-            <li><a href="/blog">> blog</a></li>
-            <li><a href="/portfolio">> portfolio</a></li>
-            <li><a href="/about">> about</a></li>
-            <li><a href="/now">> now</a></li>
-        </ul>
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-left">
+        <a class="site-name" href="/">crxxtian<span class="bash">@web</span>:~$</a>
     </div>
+    <nav class="nav-right">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/now">Now</a>
+    </nav>
+</header>
 
-    <!-- Right Content -->
-    <div class="right-column">
-        {% unless page.hide_title %}
-        <h1 class="fade-title">{{ page.title }}</h1>
-        {% endunless %}
+<!-- MAIN CONTENT -->
+<main class="page-container">
+    {{ content }}
+</main>
 
-        {{ content }}
-    </div>
-</div>
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; {{ site.time | date: "%Y" }} Crxxtian. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
