@@ -285,4 +285,12 @@ html, body {
     max-width: 1200px;
     margin: 0 auto;
 }
+.right-column {
+    width: 50%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* or center if you want fully centered */
+}
 

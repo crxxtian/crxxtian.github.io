@@ -11,9 +11,8 @@
 </head>
 <body>
 
-<!-- Navigation + Title Layout -->
 <div class="main-container fade-in">
-    <!-- Left Nav -->
+    <!-- Left Menu -->
     <div class="nav-column">
         <ul class="menu">
             <li><a href="/">> home</a></li>
@@ -24,16 +23,15 @@
         </ul>
     </div>
 
-    <!-- Right Side: Title -->
-    <div class="title-column">
+    <!-- Right Content -->
+    <div class="right-column">
+        {% unless page.hide_title %}
         <h1 class="fade-title">{{ page.title }}</h1>
+        {% endunless %}
+
+        {{ content }}
     </div>
 </div>
-
-<!-- Page Content (outside the layout so blog.html isn't cramped) -->
-<main class="page-content">
-    {{ content }}
-</main>
 
 </body>
 </html>
