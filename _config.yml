@@ -1,12 +1,13 @@
 title: Cyber Lair
 description: Digital threat logs.
 baseurl: ""
-url: "https://yourusername.github.io"
+url: "https://crxxtian.github.io"
 
 permalink: /blog/:title/
 markdown: kramdown
 future: true
 
-collections:
-  posts:
-    output: true
+# Plugins if needed
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag

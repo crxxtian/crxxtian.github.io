@@ -8,6 +8,7 @@ permalink: /blog/
     <h1 class="post-title">Blog</h1>
     <p class="post-date">All Cyber Logs</p>
 
+    {% if site.posts and site.posts.size > 0 %}
     <div class="post-slider">
         {% for post in site.posts %}
         <div class="post-slide">
@@ -18,4 +19,7 @@ permalink: /blog/
         </div>
         {% endfor %}
     </div>
+    {% else %}
+    <p class="post-meta">No posts yet. Stay tuned for transmissions from the lair.</p>
+    {% endif %}
 </div>
