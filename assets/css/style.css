@@ -782,3 +782,219 @@ footer {
         border-top: 12px solid var(--accent-dark);
     }
 }
+.blog-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.post-preview {
+    background: #1a2a2a; /* Dark, cyberpunk-y card background */
+    border: 1px solid #00ffcc; /* Neon green border */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-preview:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 204, 0.3); /* Neon glow */
+}
+
+.post-preview h2 {
+    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.post-preview h2 a {
+    color: #00ffcc; /* Neon accent */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-preview h2 a:hover {
+    color: #ff00cc; /* Secondary neon pop */
+}
+
+.post-preview p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #d3d3d3; /* Light gray for readability */
+    margin-bottom: 1rem;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #00ffcc;
+    color: #000;
+    border-radius: 4px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.read-more:hover {
+    transform: scale(1.03);
+    background: #ff00cc;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 1rem;
+}
+
+.post-tags a {
+    color: #00ffcc;
+    margin-right: 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-tags a:hover {
+    color: #ff00cc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .blog-container {
+        padding: 1rem;
+    }
+    .post-preview {
+        padding: 1rem;
+    }
+    .post-preview h2 {
+        font-size: 1.3rem;
+    }
+    .post-preview p {
+        font-size: 0.95rem;
+    }
+    .read-more {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-preview h2 {
+        font-size: 1.2rem;
+    }
+    .post-preview p {
+        font-size: 0.9rem;
+    }
+    .read-more {
+        font-size: 0.8rem;
+    }
+}
+.portfolio-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #0a0a0a; /* Dark background */
+}
+
+.experience, .education, .involvement, .skills, .certifications {
+    margin-bottom: 3rem;
+}
+
+.experience h1, .education h1, .involvement h1, .skills h1, .certifications h1 {
+    font-family: 'Orbitron', sans-serif; /* Futuristic font */
+    font-size: 2.5rem;
+    color: #00ffcc; /* Neon green */
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.job, .education-details, .skills-category, .certification {
+    background: #1a2a2a; /* Midnight green card */
+    border: 1px solid #00ffcc; /* Neon green border */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job:hover, .education-details:hover, .skills-category:hover, .certification:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 204, 0.3); /* Neon glow on hover */
+}
+
+.job h2, .education-details h2, .skills-category h2, .certification h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: #00ffcc;
+    margin-bottom: 0.5rem;
+}
+
+.job h3, .education-details p, .involvement p, .skills-category p, .certification p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #d3d3d3; /* Light gray for readability */
+    margin-bottom: 0.5rem;
+}
+
+.job p, .education-details p, .involvement p, .skills-category p, .certification p {
+    line-height: 1.6;
+}
+
+.current-label {
+    background: #ff00cc; /* Secondary neon pop */
+    color: #000;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in forwards;
+}
+
+.fade-in:nth-child(1) { animation-delay: 0.5s; }
+.fade-in:nth-child(2) { animation-delay: 1s; }
+.fade-in:nth-child(3) { animation-delay: 1.5s; }
+.fade-in:nth-child(4) { animation-delay: 2s; }
+.fade-in:nth-child(5) { animation-delay: 2.5s; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .portfolio-container {
+        padding: 1rem;
+    }
+    .experience h1, .education h1, .involvement h1, .skills h1, .certifications h1 {
+        font-size: 2rem;
+    }
+    .job, .education-details, .skills-category, .certification {
+        padding: 1rem;
+    }
+    .job h2, .education-details h2, .skills-category h2, .certification h3 {
+        font-size: 1.3rem;
+    }
+    .job h3, .education-details p, .involvement p, .skills-category p, .certification p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .experience h1, .education h1, .involvement h1, .skills h1, .certifications h1 {
+        font-size: 1.8rem;
+    }
+    .job h2, .education-details h2, .skills-category h2, .certification h3 {
+        font-size: 1.2rem;
+    }
+    .job h3, .education-details p, .involvement p, .skills-category p, .certification p {
+        font-size: 0.9rem;
+    }
+}
