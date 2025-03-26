@@ -477,7 +477,7 @@ a:focus {
     z-index: 1;
 }
 
-.post-preview-list, .portfolio-grid {
+.portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
@@ -487,25 +487,25 @@ a:focus {
     z-index: 1;
 }
 
-.post-preview, .portfolio-card {
+.portfolio-card {
     background: var(--card-bg);
     border-radius: var(--radius);
     border: 1px solid var(--accent);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     overflow: hidden;
+    position: relative;
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
-.post-preview:hover, .portfolio-card:hover {
+.portfolio-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     border-color: var(--accent-neon);
 }
 
-.post-preview::before, .portfolio-card::before {
+.portfolio-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -517,7 +517,150 @@ a:focus {
     transition: opacity var(--transition);
 }
 
-.post-preview:hover::before, .portfolio-card:hover::before {
+.portfolio-card:hover::before {
+    opacity: 1;
+}
+
+.portfolio-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--accent-neon);
+    opacity: 0.5;
+    transition: opacity var(--transition);
+}
+
+.portfolio-card:hover::after {
+    opacity: 1;
+}
+
+.card-header {
+    padding: 1rem 1.5rem;
+    background: rgba(26, 60, 52, 0.1);
+    border-bottom: 1px solid var(--accent);
+    transition: border-color var(--transition);
+}
+
+.portfolio-card:hover .card-header {
+    border-color: var(--accent-neon);
+}
+
+.card-header h3 {
+    font-family: var(--font-futuristic);
+    font-size: 1.2rem;
+    color: var(--fg);
+    transition: color var(--transition);
+    position: relative;
+    padding-left: 2rem;
+}
+
+.card-header h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+}
+
+.card-header h3:hover {
+    color: var(--accent-neon);
+}
+
+.card-header p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 0.3rem;
+}
+
+.card-content {
+    padding: 1rem 1.5rem;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--fg);
+    transition: color var(--transition);
+}
+
+.card-content p:hover {
+    color: var(--accent-neon);
+}
+
+.current-label {
+    background: var(--accent-neon);
+    color: #000;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.portfolio-card.experience .card-header h3::before {
+    content: '💼';
+}
+
+.portfolio-card.education .card-header h3::before {
+    content: '🎓';
+}
+
+.portfolio-card.involvement .card-header h3::before {
+    content: '🤝';
+}
+
+.portfolio-card.certifications .card-header h3::before {
+    content: '🏆';
+}
+
+.post-preview-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.post-preview {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.post-preview:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-neon);
+}
+
+.post-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent-neon);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.post-preview:hover::before {
     opacity: 1;
 }
 
@@ -528,7 +671,7 @@ a:focus {
     border-bottom: var(--border);
 }
 
-.post-content, .card-content {
+.post-content {
     padding: 1.5rem;
     flex-grow: 1;
     display: flex;
@@ -537,7 +680,7 @@ a:focus {
     z-index: 1;
 }
 
-.post-content h3, .card-header h3 {
+.post-content h3 {
     font-family: var(--font-futuristic);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
@@ -547,17 +690,17 @@ a:focus {
     transition: color var(--transition);
 }
 
-.post-content h3:hover, .card-header h3:hover {
+.post-content h3:hover {
     color: var(--accent-neon);
 }
 
-.post-date, .card-header p {
+.post-date {
     font-size: 0.85rem;
     opacity: 0.7;
     margin-bottom: 0.75rem;
 }
 
-.post-excerpt, .card-content p {
+.post-excerpt {
     font-size: 0.95rem;
     opacity: 0.9;
     line-height: 1.6;
@@ -609,87 +752,6 @@ a:focus {
 .view-all:focus {
     color: var(--accent-neon);
     border-color: var(--accent-neon);
-}
-
-.portfolio-card {
-    background: linear-gradient(145deg, var(--card-bg), var(--accent-dark));
-    border: 1px solid var(--accent);
-    position: relative;
-    overflow: hidden;
-    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-}
-
-.portfolio-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    border-color: var(--accent-neon);
-}
-
-.portfolio-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(46, 125, 50, 0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity var(--transition);
-}
-
-.portfolio-card:hover::after {
-    opacity: 1;
-}
-
-.card-header {
-    padding: 1rem 1.5rem;
-    background: rgba(26, 60, 52, 0.2);
-    border-bottom: 1px solid var(--accent);
-    transition: border-color var(--transition);
-}
-
-.portfolio-card:hover .card-header {
-    border-color: var(--accent-neon);
-}
-
-.card-header h3 {
-    font-family: var(--font-futuristic);
-    font-size: 1.3rem;
-    color: var(--fg);
-    transition: color var(--transition);
-}
-
-.card-header h3:hover {
-    color: var(--accent-neon);
-}
-
-.card-header p {
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-.card-content {
-    padding: 1.5rem;
-}
-
-.card-content p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--fg);
-    transition: color var(--transition);
-}
-
-.card-content p:hover {
-    color: var(--accent-neon);
-}
-
-.current-label {
-    background: var(--accent-neon);
-    color: #000;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
 }
 
 .skills-section .skills-grid {
@@ -862,7 +924,7 @@ footer {
     .section-title {
         font-size: 2rem;
     }
-    .post-preview-list, .portfolio-grid, .skills-grid {
+    .portfolio-grid, .post-preview-list, .skills-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -892,10 +954,10 @@ footer {
     .section-title {
         font-size: 1.8rem;
     }
-    .post-content h3, .card-header h3, .skill-card h3 {
+    .card-header h3, .post-content h3, .skill-card h3 {
         font-size: 1.1rem;
     }
-    .post-excerpt, .card-content p, .skill-card p {
+    .card-content p, .post-excerpt, .skill-card p {
         font-size: 0.9rem;
     }
     .read-more-btn {
@@ -930,7 +992,7 @@ footer {
     .section-title {
         font-size: 1.5rem;
     }
-    .post-content h3, .card-header h3, .skill-card h3 {
+    .card-header h3, .post-content h3, .skill-card h3 {
         font-size: 1rem;
     }
 }
