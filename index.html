@@ -3,6 +3,16 @@ layout: default
 title: Home
 ---
 
+<header class="navbar">
+    <nav class="nav-right">
+        <a href="/" class="nav-link">Home</a>
+        <span class="nav-divider"></span>
+        <a href="/blog" class="nav-link">Blog</a>
+        <span class="nav-divider"></span>
+        <a href="/portfolio" class="nav-link">Portfolio</a>
+    </nav>
+</header>
+
 <section class="hero">
     <h1 class="hero-title">Hey, welcome to my website.</h1>
     <p class="hero-subtitle">
@@ -25,10 +35,13 @@ title: Home
     <div class="post-preview-list">
         {% for post in site.posts limit:3 %}
         <div class="post-preview">
-            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-            <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
-            <p>{{ post.excerpt }}</p>
-            <a class="read-more" href="{{ post.url }}">→ Read More</a>
+            <div class="post-thumbnail"></div>
+            <div class="post-content">
+                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+                <p class="post-excerpt">{{ post.excerpt }}</p>
+                <a class="read-more-btn" href="{{ post.url }}">→ Read More</a>
+            </div>
         </div>
         {% endfor %}
     </div>
@@ -37,3 +50,12 @@ title: Home
         <a class="view-all" href="/blog">View all posts →</a>
     </div>
 </section>
+
+<footer>
+    <p class="footer-text">© 2025 crxxtian. All rights reserved.</p>
+    <div class="footer-links">
+        <a href="https://github.com/crxxtian" target="_blank">GitHub</a>
+        <span class="footer-divider"></span>
+        <a href="https://twitter.com/crxxtian" target="_blank">Twitter</a>
+    </div>
+</footer>

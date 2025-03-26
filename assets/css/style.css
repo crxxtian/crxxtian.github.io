@@ -1,17 +1,17 @@
-/* ====================================
-   GLOBAL VARIABLES & BASE
-==================================== */
 :root {
-    --bg: #0a0a0a;           /* Main background (dark) */
-    --bg-alt: #131313;       /* Lighter dark for sections */
-    --fg: #e5e5e5;           /* Primary text color */
-    --accent: #00ffc3;       /* Neon accent color */
-    --accent-soft: #1affc1;  /* Softer accent for borders */
-    --card-bg: #111;         /* Card background color */
+    --bg: #0a0a0a;
+    --bg-alt: #131313;
+    --fg: #e5e5e5;
+    --accent: #00ffc3;
+    --accent-soft: #1affc1;
+    --card-bg: #111;
     --font-main: 'Fira Code', monospace;
-    --glow: 0 0 8px var(--accent); /* Reduced glow for better readability */
+    --glow: 0 0 8px var(--accent);
+    --glow-soft: 0 0 4px rgba(0, 255, 195, 0.5);
     --radius: 12px;
     --transition: 0.3s ease-in-out;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --border: 1px solid rgba(0, 255, 195, 0.2);
 }
 
 * {
@@ -19,6 +19,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html, body {
     width: 100%;
     height: 100%;
@@ -29,229 +30,312 @@ html, body {
     line-height: 1.7;
     font-size: 16px;
 }
+
 a {
     color: var(--accent);
     text-decoration: none;
-    transition: color var(--transition);
+    transition: color var(--transition), transform var(--transition);
 }
+
 a:hover {
     color: #fff;
     text-shadow: var(--glow);
 }
+
 ::selection {
     background: var(--accent);
     color: #000;
 }
 
-/* ====================================
-   NAVIGATION
-==================================== */
 .navbar {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background: var(--bg-alt);     /* Slightly lighter background */
-    border-bottom: 1px solid #222; /* Subtle separator */
+    padding: 1.5rem 2rem;
+    background: var(--bg-alt);
+    border-bottom: var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
-.nav-left {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--accent);
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
-.nav-right a {
-    margin-left: 1.5rem;
-    font-weight: 500;
-    font-size: 0.95rem;
+
+.nav-link {
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
     position: relative;
-    padding-bottom: 2px; /* space for underline */
-}
-.nav-right a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.2s;
-}
-.nav-right a:hover::after {
-    width: 100%;
+    transition: color var(--transition);
 }
 
-/* Responsive nav tweak */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-    .nav-right a {
-        margin-left: 0;
-        margin-right: 0;
-    }
+.nav-link:hover {
+    color: var(--accent-soft);
+    text-shadow: var(--glow-soft);
 }
 
-/* ====================================
-   HERO / LANDING
-==================================== */
+.nav-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
 .hero {
-    padding: 6rem 2rem 4rem;
+    padding: 8rem 2rem 5rem;
     text-align: center;
-    background: var(--bg); /* Could use var(--bg-alt) if you want a lighter hero */
+    background: var(--bg);
+    position: relative;
 }
+
 .hero-title {
-    font-size: 3rem;
-    font-weight: bold;
+    font-size: 3.5rem;
+    font-weight: 900;
     color: var(--accent);
     text-shadow: var(--glow);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
 }
+
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     opacity: 0.85;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.5px;
 }
+
 .hero-intro {
-    font-size: 1rem;
-    max-width: 700px;
+    font-size: 1.1rem;
+    max-width: 750px;
     margin: 0 auto 3rem;
-    line-height: 1.7;
+    line-height: 1.8;
     opacity: 0.9;
 }
+
 .hero-buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 1.5rem;
 }
+
 .hero-buttons a {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: 0.9rem 2rem;
     border-radius: var(--radius);
     background: var(--accent);
     color: #000;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 1rem;
     box-shadow: var(--glow);
     transition: transform var(--transition), box-shadow var(--transition);
 }
+
 .hero-buttons a:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 12px var(--accent);
+    box-shadow: 0 0 15px var(--accent);
 }
 
-/* ====================================
-   SECTION WRAPPER
-==================================== */
-.section {
-    padding: 4rem 2rem;
-    background: var(--bg-alt);  /* Slightly lighter for contrast */
-    margin-bottom: 2rem;
-    border-top: 1px solid #222; /* Subtle line above section */
+.section-highlight {
+    padding: 6rem 2rem 4rem;
+    background: var(--bg-alt);
+    border-top: var(--border);
 }
+
 .section-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--accent);
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     text-shadow: var(--glow);
     text-align: center;
+    font-weight: 700;
 }
 
-/* ====================================
-   LATEST RESEARCH / POSTS
-==================================== */
-.section-highlight {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-}
 .post-preview-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
 .post-preview {
     background: var(--card-bg);
-    padding: 1.5rem;
     border-radius: var(--radius);
-    border: 1px solid var(--accent-soft);
-    box-shadow: 0 0 10px rgba(0, 255, 195, 0.1);
+    border: var(--border);
+    box-shadow: var(--shadow);
     transition: transform var(--transition), box-shadow var(--transition);
-    text-align: left;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
+
 .post-preview:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 15px rgba(0, 255, 195, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 195, 0.4);
 }
-.post-preview h3 {
-    font-size: 1.1rem;
+
+.post-thumbnail {
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+    border-bottom: var(--border);
+}
+
+.post-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-content h3 {
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--accent);
+    font-weight: 600;
 }
+
 .post-date {
-    font-size: 0.8rem;
-    opacity: 0.6;
-    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 0.75rem;
 }
-.post-preview p {
+
+.post-excerpt {
     font-size: 0.95rem;
-    opacity: 0.85;
+    opacity: 0.9;
     line-height: 1.6;
+    flex-grow: 1;
 }
-.read-more {
+
+.read-more-btn {
     display: inline-block;
     margin-top: 1rem;
-    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    color: #000;
+    border-radius: var(--radius);
+    font-weight: 600;
     font-size: 0.9rem;
-    color: var(--accent);
-    transition: text-shadow var(--transition);
-}
-.read-more:hover {
-    text-shadow: var(--glow);
-}
-
-/* Extra center link */
-.view-all {
-    display: inline-block;
-    margin-top: 2rem;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* ====================================
-   FOOTER
-==================================== */
-footer {
     text-align: center;
-    padding: 1rem;
-    color: #777;
-    font-size: 0.8rem;
-    border-top: 1px solid #222;
-    margin-top: 3rem;
-    background: var(--bg-alt);
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
-/* ====================================
-   RESPONSIVE
-==================================== */
+.read-more-btn:hover {
+    transform: scale(1.03);
+    box-shadow: var(--glow);
+    text-shadow: none;
+}
+
+.view-all-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.view-all {
+    font-weight: 700;
+    font-size: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--accent);
+    transition: color var(--transition);
+}
+
+.view-all:hover {
+    color: var(--accent-soft);
+}
+
+footer {
+    padding: 2rem 1rem;
+    background: var(--bg-alt);
+    border-top: var(--border);
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.footer-divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.4rem;
+    .navbar {
+        padding: 1rem;
     }
-    .hero-buttons {
+
+    .nav-right {
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.5rem;
     }
+
+    .nav-divider {
+        display: none;
+    }
+
+    .hero {
+        padding: 6rem 1rem 4rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
     .hero-buttons a {
-        width: 80%;
-        margin: 0 auto;
+        width: 100%;
+        max-width: 300px;
     }
-    .nav-right a {
-        margin-left: 0;
-        margin-right: 1rem;
+
+    .section-highlight {
+        padding: 4rem 1rem 3rem;
     }
+
     .post-preview-list {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-intro {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .post-content h3 {
+        font-size: 1.1rem;
     }
 }
