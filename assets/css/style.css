@@ -3,6 +3,7 @@
     --bg-alt: #131313;
     --fg: #F5F5DC;
     --accent: #8B9A46;
+    --accent-dark: #3C4A22;
     --accent-secondary: #D4A017;
     --card-bg: #1A1A1A;
     --font-main: 'Fira Code', monospace;
@@ -110,7 +111,9 @@ a:focus {
 .hero {
     padding: 10rem 2rem 6rem;
     text-align: center;
-    background: linear-gradient(135deg, var(--bg) 0%, #0f0f0f 100%);
+    background: linear-gradient(45deg, var(--bg) 0%, var(--accent-dark) 50%, var(--bg) 100%);
+    background-size: 200% 200%;
+    animation: gradientFlow 10s ease-in-out infinite;
     position: relative;
     overflow: hidden;
 }
@@ -122,10 +125,22 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(139, 154, 70, 0.1) 1px, transparent 1px);
+    background: radial-gradient(circle, rgba(139, 154, 70, 0.2) 1px, transparent 1px);
     background-size: 20px 20px;
     opacity: 0.3;
     z-index: 0;
+    animation: particleShift 20s linear infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes particleShift {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
 }
 
 .hero-title {
@@ -146,26 +161,8 @@ a:focus {
     opacity: 0.85;
     margin-bottom: 2.5rem;
     letter-spacing: 0.5px;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid var(--accent);
     position: relative;
     z-index: 1;
-}
-
-.animated-text {
-    animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
-}
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes blink {
-    from, to { border-color: transparent; }
-    50% { border-color: var(--accent); }
 }
 
 .hero-intro {
@@ -177,6 +174,10 @@ a:focus {
     font-weight: 400;
     position: relative;
     z-index: 1;
+    background: rgba(139, 154, 70, 0.1);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: var(--border);
 }
 
 .fade-in {
