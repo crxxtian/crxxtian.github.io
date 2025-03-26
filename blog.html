@@ -3,22 +3,35 @@ layout: default
 title: Blog
 ---
 
-<main class="blog-container">
-    {% for post in site.posts %}
-    <div class="post-preview">
-        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-        <p>{{ post.excerpt }}</p>
-        <a href="{{ post.url }}" class="read-more">Read More →</a>
-        <div class="post-meta">
-            <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
-            {% if post.tags.size > 0 %}
-            <span class="post-tags">
-        {% for tag in post.tags %}
-        <a href="/tags/{{ tag }}">{{ tag }}</a>
-        {% endfor %}
-      </span>
-            {% endif %}
-        </div>
+<section class="hero">
+    <h1 class="hero-title">
+        <span class="letter">M</span><span class="letter">y</span>
+        <span class="letter">B</span><span class="letter">l</span><span class="letter">o</span><span class="letter">g</span>
+    </h1>
+    <p class="hero-subtitle">
+        <span class="role">A collection of my thoughts and research</span>
+    </p>
+    <p class="hero-intro fade-in">
+        Dive into my latest posts on cybersecurity, tech, and more. I share my insights, projects, and experiences as I navigate the world of security and innovation.
+    </p>
+    <div class="hero-buttons">
+        <a href="/new-post" class="button-primary">> Write a New Post</a>
     </div>
-    {% endfor %}
-</main>
+</section>
+
+<section class="section-highlight">
+    <h2 class="section-title">All Posts</h2>
+    <div class="post-preview-list">
+        {% for post in site.posts %}
+        <div class="post-preview">
+            <div class="post-thumbnail"></div>
+            <div class="post-content">
+                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+                <p class="post-excerpt">{{ post.excerpt }}</p>
+                <a class="read-more-btn" href="{{ post.url }}">→ Read More</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

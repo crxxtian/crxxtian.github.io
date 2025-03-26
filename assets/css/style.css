@@ -5,14 +5,17 @@
     --accent: #1A3C34; /* Midnight green */
     --accent-dark: #0F2924; /* Deeper midnight green */
     --accent-secondary: #A68A64; /* Muted gold */
+    --accent-neon: #00ffcc; /* Neon cyan for highlights */
     --card-bg: #1A1A1A;
     --font-main: 'Fira Code', monospace;
     --font-secondary: 'Inter', sans-serif;
+    --font-futuristic: 'Orbitron', sans-serif;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     --border: 1px solid rgba(26, 60, 52, 0.3);
     --radius: 12px;
     --transition: 0.3s ease-in-out;
     --glow: 0 0 10px rgba(26, 60, 52, 0.5);
+    --glow-neon: 0 0 10px rgba(0, 255, 204, 0.5);
 }
 
 * {
@@ -377,7 +380,7 @@ a:focus {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.post-preview-list {
+.post-preview-list, .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
@@ -385,7 +388,7 @@ a:focus {
     margin: 0 auto;
 }
 
-.post-preview {
+.post-preview, .portfolio-card {
     background: var(--card-bg);
     border-radius: var(--radius);
     border: var(--border);
@@ -398,13 +401,13 @@ a:focus {
     will-change: transform;
 }
 
-.post-preview:hover {
+.post-preview:hover, .portfolio-card:hover {
     transform: scale(1.03);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-    border-color: var(--accent-secondary);
+    border-color: var(--accent-neon);
 }
 
-.post-preview::before {
+.post-preview::before, .portfolio-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -412,20 +415,20 @@ a:focus {
     width: 100%;
     height: 100%;
     border: 2px solid transparent;
-    border-image: linear-gradient(45deg, var(--accent), var(--accent-secondary)) 1;
+    border-image: linear-gradient(45deg, var(--accent), var(--accent-neon)) 1;
     border-image-slice: 1;
     opacity: 0;
     transition: opacity var(--transition);
 }
 
-.post-preview:hover::before {
+.post-preview:hover::before, .portfolio-card:hover::before {
     opacity: 1;
 }
 
 .post-thumbnail {
     width: 100%;
     height: 150px;
-    background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
+    background: linear-gradient(45deg, var(--accent), var(--accent-neon));
     border-bottom: var(--border);
     animation: gradientShift 5s ease-in-out infinite;
 }
@@ -436,14 +439,14 @@ a:focus {
     100% { background-position: 0% 50%; }
 }
 
-.post-content {
+.post-content, .card-content {
     padding: 1.5rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-.post-content h3 {
+.post-content h3, .card-header h3 {
     font-family: var(--font-main);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
@@ -453,17 +456,17 @@ a:focus {
     transition: color var(--transition);
 }
 
-.post-content h3:hover {
-    color: var(--accent-secondary);
+.post-content h3:hover, .card-header h3:hover {
+    color: var(--accent-neon);
 }
 
-.post-date {
+.post-date, .card-header p {
     font-size: 0.85rem;
     opacity: 0.7;
     margin-bottom: 0.75rem;
 }
 
-.post-excerpt {
+.post-excerpt, .card-content p {
     font-size: 0.95rem;
     opacity: 0.9;
     line-height: 1.6;
@@ -486,12 +489,12 @@ a:focus {
 
 .read-more-btn:hover {
     transform: scale(1.03);
-    background: var(--accent-secondary);
+    background: var(--accent-neon);
 }
 
 .read-more-btn:focus {
-    background: var(--accent-secondary);
-    box-shadow: var(--glow);
+    background: var(--accent-neon);
+    box-shadow: var(--glow-neon);
 }
 
 .view-all-container {
@@ -509,13 +512,80 @@ a:focus {
 }
 
 .view-all:hover {
-    color: var(--accent-secondary);
-    border-color: var(--accent-secondary);
+    color: var(--accent-neon);
+    border-color: var(--accent-neon);
 }
 
 .view-all:focus {
-    color: var(--accent-secondary);
-    border-color: var(--accent-secondary);
+    color: var(--accent-neon);
+    border-color: var(--accent-neon);
+}
+
+/* Portfolio-Specific Styles */
+.portfolio-card {
+    background: linear-gradient(145deg, var(--card-bg), var(--accent-dark));
+    border: 1px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 12px 40px rgba(0, 255, 204, 0.3);
+    border-color: var(--accent-neon);
+}
+
+.portfolio-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.portfolio-card:hover::after {
+    opacity: 1;
+}
+
+.card-header {
+    padding: 1rem 1.5rem;
+    background: rgba(26, 60, 52, 0.2);
+    border-bottom: var(--border);
+}
+
+.card-header h3 {
+    font-family: var(--font-futuristic);
+    font-size: 1.3rem;
+    color: var(--accent-neon);
+}
+
+.card-header p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--fg);
+}
+
+.current-label {
+    background: var(--accent-neon);
+    color: #000;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
 }
 
 footer {
@@ -548,12 +618,12 @@ footer {
 }
 
 .footer-links a:hover {
-    color: var(--accent-secondary);
+    color: var(--accent-neon);
     transform: translateY(-2px);
 }
 
 .footer-links a:focus {
-    color: var(--accent-secondary);
+    color: var(--accent-neon);
 }
 
 .footer-divider {
@@ -567,11 +637,9 @@ footer {
     .hero-title {
         font-size: 3.5rem;
     }
-
     .hero-subtitle {
         font-size: 1.3rem;
     }
-
     .hero-intro {
         max-width: 600px;
     }
@@ -581,29 +649,23 @@ footer {
     .hero {
         padding: 8rem 1.5rem 4rem;
     }
-
     .hero-title {
         font-size: 3rem;
     }
-
     .hero-subtitle {
         font-size: 1.2rem;
         gap: 0.3rem;
     }
-
     .hero-intro {
         font-size: 1.1rem;
         max-width: 500px;
     }
-
     .hero-buttons {
         gap: 1rem;
     }
-
     .section-highlight {
         padding: 6rem 1.5rem 3rem;
     }
-
     .section-title {
         font-size: 2.2rem;
     }
@@ -613,58 +675,46 @@ footer {
     .navbar {
         padding: 1rem;
     }
-
     .nav-right {
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.5rem;
     }
-
     .nav-divider {
         display: none;
     }
-
     .hero {
         padding: 6rem 1rem 4rem;
     }
-
     .hero-title {
         font-size: 2.5rem;
     }
-
     .hero-subtitle {
         font-size: 1.1rem;
         flex-wrap: wrap;
     }
-
     .hero-intro {
         font-size: 1rem;
         max-width: 400px;
     }
-
     .hero-buttons {
         flex-direction: column;
         gap: 1rem;
     }
-
     .hero-buttons a {
         width: 100%;
         max-width: 300px;
     }
-
     .social-links {
         gap: 1rem;
     }
-
     .section-highlight {
         padding: 4rem 1rem 3rem;
     }
-
     .section-title {
         font-size: 2rem;
     }
-
-    .post-preview-list {
+    .post-preview-list, .portfolio-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -673,41 +723,33 @@ footer {
     .hero-title {
         font-size: 2rem;
     }
-
     .hero-subtitle {
         font-size: 1rem;
         flex-direction: column;
         gap: 0.5rem;
     }
-
     .hero-intro {
         font-size: 0.95rem;
         padding: 1rem;
     }
-
     .social-icon {
         width: 35px;
         height: 35px;
     }
-
     .arrow {
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
         border-top: 15px solid var(--accent-dark);
     }
-
     .section-title {
         font-size: 1.8rem;
     }
-
-    .post-content h3 {
+    .post-content h3, .card-header h3 {
         font-size: 1.1rem;
     }
-
-    .post-excerpt {
+    .post-excerpt, .card-content p {
         font-size: 0.9rem;
     }
-
     .read-more-btn {
         font-size: 0.85rem;
     }
@@ -717,38 +759,30 @@ footer {
     .hero {
         padding: 5rem 1rem 3rem;
     }
-
     .hero-title {
         font-size: 1.8rem;
     }
-
     .hero-subtitle {
         font-size: 0.9rem;
     }
-
     .hero-intro {
         font-size: 0.9rem;
     }
-
     .hero-buttons a {
         padding: 0.7rem 1.5rem;
         font-size: 0.9rem;
     }
-
     .social-icon {
         width: 30px;
         height: 30px;
     }
-
     .section-highlight {
         padding: 3rem 1rem 2rem;
     }
-
     .section-title {
         font-size: 1.5rem;
     }
-
-    .post-content h3 {
+    .post-content h3, .card-header h3 {
         font-size: 1rem;
     }
 }
@@ -757,244 +791,23 @@ footer {
     .hero-title {
         font-size: 1.5rem;
     }
-
     .hero-subtitle {
         font-size: 0.85rem;
     }
-
     .hero-intro {
         font-size: 0.85rem;
     }
-
     .hero-buttons a {
         padding: 0.6rem 1.2rem;
         font-size: 0.85rem;
     }
-
     .social-icon {
         width: 25px;
         height: 25px;
     }
-
     .arrow {
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
         border-top: 12px solid var(--accent-dark);
-    }
-}
-.blog-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.post-preview {
-    background: #1a2a2a; /* Dark, cyberpunk-y card background */
-    border: 1px solid #00ffcc; /* Neon green border */
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.post-preview:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 255, 204, 0.3); /* Neon glow */
-}
-
-.post-preview h2 {
-    font-family: 'Orbitron', sans-serif; /* Futuristic font */
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.post-preview h2 a {
-    color: #00ffcc; /* Neon accent */
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.post-preview h2 a:hover {
-    color: #ff00cc; /* Secondary neon pop */
-}
-
-.post-preview p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #d3d3d3; /* Light gray for readability */
-    margin-bottom: 1rem;
-}
-
-.read-more {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: #00ffcc;
-    color: #000;
-    border-radius: 4px;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.read-more:hover {
-    transform: scale(1.03);
-    background: #ff00cc;
-}
-
-.post-meta {
-    font-size: 0.9rem;
-    color: #777;
-    margin-top: 1rem;
-}
-
-.post-tags a {
-    color: #00ffcc;
-    margin-right: 0.5rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.post-tags a:hover {
-    color: #ff00cc;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .blog-container {
-        padding: 1rem;
-    }
-    .post-preview {
-        padding: 1rem;
-    }
-    .post-preview h2 {
-        font-size: 1.3rem;
-    }
-    .post-preview p {
-        font-size: 0.95rem;
-    }
-    .read-more {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .post-preview h2 {
-        font-size: 1.2rem;
-    }
-    .post-preview p {
-        font-size: 0.9rem;
-    }
-    .read-more {
-        font-size: 0.8rem;
-    }
-}
-.portfolio-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: #0a0a0a; /* Dark background */
-}
-
-.experience, .education, .involvement, .skills, .certifications {
-    margin-bottom: 3rem;
-}
-
-.experience h1, .education h1, .involvement h1, .skills h1, .certifications h1 {
-    font-family: 'Orbitron', sans-serif; /* Futuristic font */
-    font-size: 2.5rem;
-    color: #00ffcc; /* Neon green */
-    text-align: center;
-    margin-bottom: 2rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.job, .education-details, .skills-category, .certification {
-    background: #1a2a2a; /* Midnight green card */
-    border: 1px solid #00ffcc; /* Neon green border */
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.job:hover, .education-details:hover, .skills-category:hover, .certification:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 255, 204, 0.3); /* Neon glow on hover */
-}
-
-.job h2, .education-details h2, .skills-category h2, .certification h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    color: #00ffcc;
-    margin-bottom: 0.5rem;
-}
-
-.job h3, .education-details p, .involvement p, .skills-category p, .certification p {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    color: #d3d3d3; /* Light gray for readability */
-    margin-bottom: 0.5rem;
-}
-
-.job p, .education-details p, .involvement p, .skills-category p, .certification p {
-    line-height: 1.6;
-}
-
-.current-label {
-    background: #ff00cc; /* Secondary neon pop */
-    color: #000;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
-}
-
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in forwards;
-}
-
-.fade-in:nth-child(1) { animation-delay: 0.5s; }
-.fade-in:nth-child(2) { animation-delay: 1s; }
-.fade-in:nth-child(3) { animation-delay: 1.5s; }
-.fade-in:nth-child(4) { animation-delay: 2s; }
-.fade-in:nth-child(5) { animation-delay: 2.5s; }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .portfolio-container {
-        padding: 1rem;
-    }
-    .experience h1, .education h1, .involvement h1, .skills h1, .certifications h1 {
-        font-size: 2rem;
-    }
-    .job, .education-details, .skills-category, .certification {
-        padding: 1rem;
-    }
-    .job h2, .education-details h2, .skills-category h2, .certification h3 {
-        font-size: 1.3rem;
-    }
-    .job h3, .education-details p, .involvement p, .skills-category p, .certification p {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .experience h1, .education h1, .involvement h1, .skills h1, .certifications h1 {
-        font-size: 1.8rem;
-    }
-    .job h2, .education-details h2, .skills-category h2, .certification h3 {
-        font-size: 1.2rem;
-    }
-    .job h3, .education-details p, .involvement p, .skills-category p, .certification p {
-        font-size: 0.9rem;
     }
 }
