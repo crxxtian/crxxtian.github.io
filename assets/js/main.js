@@ -13,15 +13,33 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < text.length; i++) {
             setTimeout(() => {
                 role.textContent += text[i];
-                if (i === text.length - 1 && index === roles.length - 1) {
+                // Stop blinking cursor and add glow when typing is complete for this role
+                if (i === text.length - 1) {
                     role.style.borderRight = 'none';
                     role.style.animation = 'none';
+                    role.classList.add('typed'); // Add class to trigger glow
                 }
             }, delay);
             delay += 100; // Adjust typing speed
         }
         delay += 500; // Delay between roles
     });
+
+    // Firefly Effect for Hero Section
+    const hero = document.querySelector('.hero');
+    const firefliesContainer = document.createElement('div');
+    firefliesContainer.className = 'hero-fireflies';
+    hero.appendChild(firefliesContainer);
+
+    // Create 20 fireflies
+    for (let i = 0; i < 20; i++) {
+        const firefly = document.createElement('div');
+        firefly.className = 'firefly';
+        firefly.style.left = `${Math.random() * 100}%`;
+        firefly.style.top = `${Math.random() * 100}%`;
+        firefly.style.animationDelay = `${Math.random() * 5}s`;
+        firefliesContainer.appendChild(firefly);
+    }
 });
 
 // Blinking cursor animation
@@ -76,7 +94,7 @@ class Particle {
     }
 
     draw() {
-        ctx.fillStyle = 'rgba(0, 255, 204, 0.5)';
+        ctx.fillStyle = 'rgba(76, 175, 80, 0.5)'; // Matches #4CAF50 with 0.5 opacity
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();

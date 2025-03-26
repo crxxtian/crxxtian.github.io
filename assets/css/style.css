@@ -4,10 +4,10 @@
     --bg: #0a0a0a;
     --bg-alt: #131313;
     --fg: #E5E5E5;
-    --accent: #1A3C34; /* Midnight green */
+    --accent: #1A3C34; /* Midnight olive green */
     --accent-dark: #0F2924; /* Deeper midnight green */
-    --accent-secondary: #A68A64; /* Muted gold */
-    --accent-neon: #00ffcc; /* Neon cyan for highlights */
+    --accent-secondary: #8A7A3D; /* Muted forest gold */
+    --accent-neon: #4CAF50; /* Muted forest green glow */
     --card-bg: #1A1A1A;
     --font-main: 'JetBrains Mono', monospace;
     --font-secondary: 'Poppins', sans-serif;
@@ -17,7 +17,7 @@
     --radius: 12px;
     --transition: 0.3s ease-in-out;
     --glow: 0 0 10px rgba(26, 60, 52, 0.5);
-    --glow-neon: 0 0 10px rgba(0, 255, 204, 0.5);
+    --glow-neon: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 * {
@@ -146,13 +146,13 @@ a:focus {
 .social-icon:hover {
     transform: scale(1.2);
     opacity: 1;
-    filter: drop-shadow(0 0 5px rgba(0, 255, 204, 0.5));
+    filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.5));
 }
 
 .hero {
     padding: 10rem 2rem 6rem;
     text-align: center;
-    background: linear-gradient(45deg, var(--bg) 0%, var(--accent-dark) 50%, var(--bg) 100%);
+    background: linear-gradient(45deg, var(--bg) 0%, var(--accent-dark) 50%, #2E3A24 100%);
     background-size: 200% 200%;
     animation: gradientFlow 10s ease-in-out infinite;
     position: relative;
@@ -184,16 +184,15 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(0, 255, 204, 0.05) 2px,
-            rgba(0, 255, 204, 0.05) 4px
+    background: linear-gradient(
+            to bottom,
+            rgba(26, 60, 52, 0.1),
+            rgba(26, 60, 52, 0.3) 50%,
+            rgba(26, 60, 52, 0.5)
     );
     opacity: 0.3;
     z-index: 0;
-    animation: scanline 5s linear infinite;
+    animation: fogFlow 20s linear infinite;
 }
 
 @keyframes gradientFlow {
@@ -207,9 +206,47 @@ a:focus {
     100% { background-position: 60px 60px; }
 }
 
-@keyframes scanline {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 100px; }
+@keyframes fogFlow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.hero-fireflies {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-neon);
+    animation: floatFirefly 5s infinite ease-in-out;
+    opacity: 0;
+}
+
+@keyframes floatFirefly {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(50px, -50px);
+    }
 }
 
 .hero-title {
@@ -271,7 +308,7 @@ a:focus {
 
 .hero-title:hover .letter {
     color: var(--accent-secondary);
-    text-shadow: 0 0 8px rgba(166, 138, 100, 0.5);
+    text-shadow: 0 0 8px rgba(138, 122, 61, 0.5);
     transform: translateY(-5px);
 }
 
@@ -317,14 +354,14 @@ a:focus {
 
 .glitch::before {
     left: 3px;
-    text-shadow: -3px 0 #ff00cc;
+    text-shadow: -3px 0 #8A7A3D; /* Updated to match new --accent-secondary */
     clip: rect(0, 900px, 0, 0);
     animation: glitch-top 1s linear infinite;
 }
 
 .glitch::after {
     left: -3px;
-    text-shadow: 3px 0 #00ffcc;
+    text-shadow: 3px 0 var(--accent-neon);
     clip: rect(0, 900px, 0, 0);
     animation: glitch-bottom 1.5s linear infinite;
 }
@@ -366,6 +403,22 @@ a:focus {
     border-radius: 50px;
     background: rgba(26, 60, 52, 0.2);
     transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.role.typed {
+    animation: glowPulse 2s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 5px var(--accent-neon);
+    }
+    50% {
+        box-shadow: 0 0 15px var(--accent-neon);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--accent-neon);
+    }
 }
 
 .role:hover {
@@ -435,7 +488,7 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 255, 204, 0.3);
+    background: rgba(76, 175, 80, 0.3);
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -446,14 +499,14 @@ a:focus {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(0, 255, 204, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(76, 175, 80, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
 }
 
 .hero-buttons a:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
     background: var(--accent-neon);
 }
 
@@ -498,12 +551,17 @@ a:focus {
             0deg,
             transparent,
             transparent 2px,
-            rgba(0, 255, 204, 0.05) 2px,
-            rgba(0, 255, 204, 0.05) 4px
+            rgba(76, 175, 80, 0.05) 2px,
+            rgba(76, 175, 80, 0.05) 4px
     );
     opacity: 0.2;
     z-index: 0;
     animation: scanline 5s linear infinite;
+}
+
+@keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
 }
 
 .section-title {
@@ -577,8 +635,8 @@ a:focus {
             0deg,
             transparent,
             transparent 2px,
-            rgba(0, 255, 204, 0.05) 2px,
-            rgba(0, 255, 204, 0.05) 4px
+            rgba(76, 175, 80, 0.05) 2px,
+            rgba(76, 175, 80, 0.05) 4px
     );
     opacity: 0.2;
     z-index: 0;
@@ -696,7 +754,7 @@ a:focus {
 
 .portfolio-card:hover {
     transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
-    box-shadow: 0 12px 40px rgba(0, 255, 204, 0.3);
+    box-shadow: 0 12px 40px rgba(76, 175, 80, 0.3);
     border-color: var(--accent-neon);
     animation: glitch 1s linear infinite;
 }
@@ -708,7 +766,7 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity var(--transition);
 }
