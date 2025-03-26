@@ -1,17 +1,16 @@
 :root {
     --bg: #0a0a0a;
     --bg-alt: #131313;
-    --fg: #e5e5e5;
-    --accent: #00ffc3;
-    --accent-soft: #1affc1;
-    --card-bg: #111;
+    --fg: #F5F5DC;
+    --accent: #8B9A46;
+    --accent-secondary: #D4A017;
+    --card-bg: #1A1A1A;
     --font-main: 'Fira Code', monospace;
-    --glow: 0 0 8px var(--accent);
-    --glow-soft: 0 0 4px rgba(0, 255, 195, 0.5);
+    --font-secondary: 'Inter', sans-serif;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --border: 1px solid rgba(139, 154, 70, 0.3);
     --radius: 12px;
     --transition: 0.3s ease-in-out;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    --border: 1px solid rgba(0, 255, 195, 0.2);
 }
 
 * {
@@ -25,7 +24,7 @@ html, body {
     height: 100%;
     background: var(--bg);
     color: var(--fg);
-    font-family: var(--font-main);
+    font-family: var(--font-secondary);
     overflow-x: hidden;
     line-height: 1.7;
     font-size: 16px;
@@ -38,8 +37,13 @@ a {
 }
 
 a:hover {
-    color: #fff;
-    text-shadow: var(--glow);
+    color: var(--accent-secondary);
+}
+
+a:focus {
+    outline: none;
+    color: var(--accent-secondary);
+    box-shadow: 0 0 8px var(--accent);
 }
 
 ::selection {
@@ -66,45 +70,102 @@ a:hover {
 }
 
 .nav-link {
-    font-weight: 700;
+    font-family: var(--font-main);
+    font-weight: 600;
     font-size: 1rem;
     padding: 0.5rem 1rem;
     position: relative;
     transition: color var(--transition);
 }
 
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--accent-secondary);
+    transition: width var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
 .nav-link:hover {
-    color: var(--accent-soft);
-    text-shadow: var(--glow-soft);
+    color: var(--accent-secondary);
+}
+
+.nav-link:focus {
+    color: var(--accent-secondary);
 }
 
 .nav-divider {
-    width: 1px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    color: rgba(245, 245, 220, 0.3);
+    font-size: 1rem;
+    margin: 0 0.5rem;
 }
 
 .hero {
-    padding: 8rem 2rem 5rem;
+    padding: 10rem 2rem 6rem;
     text-align: center;
-    background: var(--bg);
+    background: linear-gradient(135deg, var(--bg) 0%, #0f0f0f 100%);
     position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(139, 154, 70, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    z-index: 0;
 }
 
 .hero-title {
+    font-family: var(--font-main);
     font-size: 3.5rem;
     font-weight: 900;
     color: var(--accent);
-    text-shadow: var(--glow);
     margin-bottom: 1.5rem;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
 }
 
 .hero-subtitle {
+    font-family: var(--font-main);
     font-size: 1.3rem;
     opacity: 0.85;
     margin-bottom: 2.5rem;
     letter-spacing: 0.5px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--accent);
+    position: relative;
+    z-index: 1;
+}
+
+.animated-text {
+    animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--accent); }
 }
 
 .hero-intro {
@@ -113,12 +174,28 @@ a:hover {
     margin: 0 auto 3rem;
     line-height: 1.8;
     opacity: 0.9;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 0.9; transform: translateY(0); }
 }
 
 .hero-buttons {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-buttons a {
@@ -126,30 +203,38 @@ a:hover {
     border-radius: var(--radius);
     background: var(--accent);
     color: #000;
+    font-family: var(--font-main);
     font-weight: 700;
     font-size: 1rem;
-    box-shadow: var(--glow);
-    transition: transform var(--transition), box-shadow var(--transition);
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), background var(--transition);
 }
 
 .hero-buttons a:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px var(--accent);
+    background: var(--accent-secondary);
+}
+
+.hero-buttons a:focus {
+    background: var(--accent-secondary);
+    box-shadow: 0 0 8px var(--accent);
 }
 
 .section-highlight {
-    padding: 6rem 2rem 4rem;
+    padding: 8rem 2rem 5rem;
     background: var(--bg-alt);
     border-top: var(--border);
 }
 
 .section-title {
+    font-family: var(--font-main);
     font-size: 2.5rem;
     color: var(--accent);
     margin-bottom: 3rem;
-    text-shadow: var(--glow);
     text-align: center;
     font-weight: 700;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .post-preview-list {
@@ -169,18 +254,45 @@ a:hover {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
+    will-change: transform;
 }
 
 .post-preview:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(0, 255, 195, 0.4);
+    transform: translateY(-5px) rotate(1deg);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+.post-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, var(--accent), var(--accent-secondary)) 1;
+    border-image-slice: 1;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.post-preview:hover::before {
+    opacity: 1;
 }
 
 .post-thumbnail {
     width: 100%;
     height: 150px;
-    background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+    background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
     border-bottom: var(--border);
+    animation: gradientShift 5s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .post-content {
@@ -191,10 +303,12 @@ a:hover {
 }
 
 .post-content h3 {
+    font-family: var(--font-main);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--accent);
     font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .post-date {
@@ -217,16 +331,21 @@ a:hover {
     background: var(--accent);
     color: #000;
     border-radius: var(--radius);
+    font-family: var(--font-main);
     font-weight: 600;
     font-size: 0.9rem;
     text-align: center;
-    transition: transform var(--transition), box-shadow var(--transition);
+    transition: transform var(--transition), background var(--transition);
 }
 
 .read-more-btn:hover {
     transform: scale(1.03);
-    box-shadow: var(--glow);
-    text-shadow: none;
+    background: var(--accent-secondary);
+}
+
+.read-more-btn:focus {
+    background: var(--accent-secondary);
+    box-shadow: 0 0 8px var(--accent);
 }
 
 .view-all-container {
@@ -235,15 +354,22 @@ a:hover {
 }
 
 .view-all {
+    font-family: var(--font-main);
     font-weight: 700;
     font-size: 1rem;
     padding-bottom: 0.3rem;
     border-bottom: 2px solid var(--accent);
-    transition: color var(--transition);
+    transition: color var(--transition), border-color var(--transition);
 }
 
 .view-all:hover {
-    color: var(--accent-soft);
+    color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+}
+
+.view-all:focus {
+    color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
 }
 
 footer {
@@ -266,14 +392,24 @@ footer {
 }
 
 .footer-links a {
+    font-family: var(--font-main);
     font-size: 0.9rem;
     font-weight: 600;
+    transition: color var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--accent-secondary);
+}
+
+.footer-links a:focus {
+    color: var(--accent-secondary);
 }
 
 .footer-divider {
     width: 1px;
     height: 16px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(245, 245, 220, 0.2);
 }
 
 @media (max-width: 768px) {
