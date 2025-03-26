@@ -52,12 +52,12 @@ a {
 }
 
 a:hover {
-    color: var(--accent-secondary);
+    color: var(--accent-neon);
 }
 
 a:focus {
     outline: none;
-    color: var(--accent-secondary);
+    color: var(--accent-neon);
     box-shadow: var(--glow);
 }
 
@@ -91,6 +91,7 @@ a:focus {
     padding: 0.5rem 1rem;
     position: relative;
     transition: color var(--transition);
+    color: var(--fg);
 }
 
 .nav-link::after {
@@ -100,7 +101,7 @@ a:focus {
     height: 2px;
     bottom: 0;
     left: 0;
-    background: var(--accent-secondary);
+    background: var(--accent-neon);
     transition: width var(--transition);
 }
 
@@ -109,11 +110,12 @@ a:focus {
 }
 
 .nav-link:hover {
-    color: var(--accent-secondary);
+    color: var(--accent-neon);
+    text-shadow: var(--glow-neon);
 }
 
 .nav-link:focus {
-    color: var(--accent-secondary);
+    color: var(--accent-neon);
 }
 
 .nav-divider {
@@ -150,6 +152,25 @@ a:focus {
     animation: particleFloat 15s linear infinite;
 }
 
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 204, 0.05) 2px,
+            rgba(0, 255, 204, 0.05) 4px
+    );
+    opacity: 0.3;
+    z-index: 0;
+    animation: scanline 5s linear infinite;
+}
+
 @keyframes gradientFlow {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -161,14 +182,19 @@ a:focus {
     100% { background-position: 60px 60px; }
 }
 
+@keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+}
+
 .hero-title {
-    font-family: var(--font-main);
+    font-family: var(--font-futuristic);
     font-size: 4rem;
     font-weight: 900;
-    color: var(--accent);
+    color: var(--accent-neon);
     margin-bottom: 1.5rem;
     letter-spacing: 2px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px var(--accent-neon);
     position: relative;
     z-index: 1;
     display: inline-block;
@@ -212,6 +238,54 @@ a:focus {
     transform: translateY(-5px);
 }
 
+.glitch {
+    position: relative;
+    animation: glitch 2s linear infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--accent-neon);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00cc;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-top 1s linear infinite;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: 2px 0 #00ffcc;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-bottom 1.5s linear infinite;
+}
+
+@keyframes glitch {
+    2%, 64% { transform: translate(2px, 0) skew(0deg); }
+    4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+    62% { transform: translate(0, 0) skew(5deg); }
+}
+
+@keyframes glitch-top {
+    2%, 64% { transform: translate(2px, -2px); }
+    4%, 60% { transform: translate(-2px, 2px); }
+    62% { transform: translate(0, 0) skew(5deg); }
+}
+
+@keyframes glitch-bottom {
+    2%, 64% { transform: translate(-2px, 0); }
+    4%, 60% { transform: translate(2px, 0); }
+    62% { transform: translate(0, 0) skew(-5deg); }
+}
+
 .hero-subtitle {
     font-family: var(--font-main);
     font-size: 1.5rem;
@@ -227,15 +301,16 @@ a:focus {
 
 .role {
     padding: 0.3rem 1rem;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--accent-neon);
     border-radius: 50px;
     background: rgba(26, 60, 52, 0.2);
-    transition: background var(--transition), transform var(--transition);
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .role:hover {
     background: rgba(26, 60, 52, 0.4);
     transform: scale(1.05);
+    box-shadow: var(--glow-neon);
 }
 
 .role-divider {
@@ -255,8 +330,8 @@ a:focus {
     background: rgba(26, 60, 52, 0.1);
     padding: 1.5rem;
     border-radius: var(--radius);
-    border: var(--border);
-    box-shadow: var(--shadow);
+    border: 1px solid var(--accent-neon);
+    box-shadow: var(--shadow), var(--glow-neon);
 }
 
 .fade-in {
@@ -289,7 +364,7 @@ a:focus {
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
-    transition: transform var(--transition), box-shadow var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
 }
 
 .hero-buttons a::before {
@@ -299,7 +374,7 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(166, 138, 100, 0.3);
+    background: rgba(0, 255, 204, 0.3);
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -310,18 +385,19 @@ a:focus {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(26, 60, 52, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(26, 60, 52, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(26, 60, 52, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 255, 204, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0); }
 }
 
 .hero-buttons a:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(26, 60, 52, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    background: var(--accent-neon);
 }
 
 .hero-buttons a:focus {
-    box-shadow: 0 0 8px var(--accent);
+    box-shadow: 0 0 8px var(--accent-neon);
 }
 
 .social-links {
@@ -341,7 +417,7 @@ a:focus {
 
 .social-icon:hover {
     transform: rotate(10deg) scale(1.2);
-    filter: drop-shadow(0 0 5px rgba(166, 138, 100, 0.5));
+    filter: drop-shadow(0 0 5px rgba(0, 255, 204, 0.5));
 }
 
 .arrow {
@@ -367,17 +443,39 @@ a:focus {
     padding: 8rem 2rem 5rem;
     background: var(--bg-alt);
     border-top: var(--border);
+    position: relative;
+}
+
+.section-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 204, 0.05) 2px,
+            rgba(0, 255, 204, 0.05) 4px
+    );
+    opacity: 0.2;
+    z-index: 0;
+    animation: scanline 5s linear infinite;
 }
 
 .section-title {
-    font-family: var(--font-main);
+    font-family: var(--font-futuristic);
     font-size: 2.5rem;
-    color: var(--accent);
+    color: var(--accent-neon);
     margin-bottom: 3rem;
     text-align: center;
     font-weight: 700;
     letter-spacing: 1.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px var(--accent-neon);
+    position: relative;
+    z-index: 1;
 }
 
 .post-preview-list, .portfolio-grid {
@@ -386,12 +484,14 @@ a:focus {
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .post-preview, .portfolio-card {
     background: var(--card-bg);
     border-radius: var(--radius);
-    border: var(--border);
+    border: 1px solid var(--accent);
     box-shadow: var(--shadow);
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     overflow: hidden;
@@ -425,6 +525,25 @@ a:focus {
     opacity: 1;
 }
 
+.post-preview::after, .portfolio-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 204, 0.05) 2px,
+            rgba(0, 255, 204, 0.05) 4px
+    );
+    opacity: 0.2;
+    z-index: 0;
+    animation: scanline 5s linear infinite;
+}
+
 .post-thumbnail {
     width: 100%;
     height: 150px;
@@ -444,20 +563,23 @@ a:focus {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 
 .post-content h3, .card-header h3 {
-    font-family: var(--font-main);
+    font-family: var(--font-futuristic);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--accent);
+    color: var(--accent-neon);
     font-weight: 600;
     letter-spacing: 0.5px;
-    transition: color var(--transition);
+    transition: color var(--transition), text-shadow var(--transition);
 }
 
 .post-content h3:hover, .card-header h3:hover {
-    color: var(--accent-neon);
+    color: var(--accent-secondary);
+    text-shadow: var(--glow-neon);
 }
 
 .post-date, .card-header p {
@@ -484,12 +606,13 @@ a:focus {
     font-weight: 600;
     font-size: 0.9rem;
     text-align: center;
-    transition: transform var(--transition), background var(--transition);
+    transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
 }
 
 .read-more-btn:hover {
     transform: scale(1.03);
     background: var(--accent-neon);
+    box-shadow: var(--glow-neon);
 }
 
 .read-more-btn:focus {
@@ -524,7 +647,7 @@ a:focus {
 /* Portfolio-Specific Styles */
 .portfolio-card {
     background: linear-gradient(145deg, var(--card-bg), var(--accent-dark));
-    border: 1px solid var(--accent);
+    border: 1px solid var(--accent-neon);
     position: relative;
     overflow: hidden;
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
@@ -534,6 +657,7 @@ a:focus {
     transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
     box-shadow: 0 12px 40px rgba(0, 255, 204, 0.3);
     border-color: var(--accent-neon);
+    animation: glitch 1s linear infinite;
 }
 
 .portfolio-card::after {
@@ -555,13 +679,14 @@ a:focus {
 .card-header {
     padding: 1rem 1.5rem;
     background: rgba(26, 60, 52, 0.2);
-    border-bottom: var(--border);
+    border-bottom: 1px solid var(--accent-neon);
 }
 
 .card-header h3 {
     font-family: var(--font-futuristic);
     font-size: 1.3rem;
     color: var(--accent-neon);
+    text-shadow: 0 0 5px var(--accent-neon);
 }
 
 .card-header p {
@@ -577,6 +702,11 @@ a:focus {
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--fg);
+    transition: text-shadow var(--transition);
+}
+
+.card-content p:hover {
+    text-shadow: 0 0 5px var(--accent-neon);
 }
 
 .current-label {
@@ -586,6 +716,7 @@ a:focus {
     border-radius: 4px;
     font-size: 0.8rem;
     margin-left: 0.5rem;
+    box-shadow: var(--glow-neon);
 }
 
 footer {
