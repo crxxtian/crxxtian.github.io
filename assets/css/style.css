@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Poppins:wght@300;400;600;700&family=Exo+2:wght@400;700;900&display=swap');
+
 :root {
     --bg: #0a0a0a;
     --bg-alt: #131313;
@@ -7,9 +9,9 @@
     --accent-secondary: #A68A64; /* Muted gold */
     --accent-neon: #00ffcc; /* Neon cyan for highlights */
     --card-bg: #1A1A1A;
-    --font-main: 'Fira Code', monospace;
-    --font-secondary: 'Inter', sans-serif;
-    --font-futuristic: 'Orbitron', sans-serif;
+    --font-main: 'JetBrains Mono', monospace;
+    --font-secondary: 'Poppins', sans-serif;
+    --font-futuristic: 'Exo 2', sans-serif;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     --border: 1px solid rgba(26, 60, 52, 0.3);
     --radius: 12px;

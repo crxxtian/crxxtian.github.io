@@ -3,18 +3,8 @@ layout: default
 title: Home
 ---
 
-<header class="navbar">
-    <nav class="nav-right">
-        <a href="/" class="nav-link">Home</a>
-        <span class="nav-divider">|</span>
-        <a href="/blog" class="nav-link">Blog</a>
-        <span class="nav-divider">|</span>
-        <a href="/portfolio" class="nav-link">Portfolio</a>
-    </nav>
-</header>
-
 <section class="hero">
-    <h1 class="hero-title">
+    <h1 class="hero-title glitch" data-text="Hey, welcome to my website.">
         <span class="letter">H</span><span class="letter">e</span><span class="letter">y</span><span class="letter">,</span>
         <span class="letter">w</span><span class="letter">e</span><span class="letter">l</span><span class="letter">c</span><span class="letter">o</span><span class="letter">m</span><span class="letter">e</span>
         <span class="letter">t</span><span class="letter">o</span>
@@ -22,39 +12,30 @@ title: Home
         <span class="letter">w</span><span class="letter">e</span><span class="letter">b</span><span class="letter">s</span><span class="letter">i</span><span class="letter">t</span><span class="letter">e</span><span class="letter">.</span>
     </h1>
     <p class="hero-subtitle">
-        <span class="role">Student</span>
-        <span class="role-divider">·</span>
-        <span class="role">Security Analyst</span>
-        <span class="role-divider">·</span>
-        <span class="role">Amateur Researcher</span>
+        <span class="role">Cybersecurity Enthusiast</span>
+        <span class="role-divider">/</span>
+        <span class="role">Future Fintech Innovator</span>
     </p>
-
     <p class="hero-intro fade-in">
-        I’m a cybersecurity student and security analyst in fintech at a Fortune 500 company, focused on detection engineering, threat triage, and enterprise infrastructure. My experience spans blue team ops, system administration, and offensive security -- with a growing interest in web application testing and threat emulation.
-
-        This site is where I document what I’m learning, building, and breaking on my path toward a full-time role in security engineering.
+        I’m Crxxtian, a cybersecurity student at Illinois State University, set to join a Fortune 500 fintech company in 2025. I’m passionate about securing digital systems, building tools, and exploring the intersection of tech and finance.
     </p>
-
     <div class="hero-buttons">
-        <a href="/blog" class="button-primary">> Read My Blog</a>
-        <a href="/portfolio" class="button-secondary">> View Portfolio</a>
+        <a href="/portfolio" class="button-primary">> View Portfolio</a>
+        <a href="/blog" class="button-secondary">> Read My Blog</a>
     </div>
-
     <div class="social-links">
-        <a href="https://linkedin.com/in/crxxtian" target="_blank">
-            <img src="/assets/icons/linkedin.png" alt="LinkedIn" class="social-icon">
-        </a>
         <a href="https://github.com/crxxtian" target="_blank">
-            <img src="/assets/icons/github.png" alt="GitHub" class="social-icon">
+            <img src="/assets/images/github.svg" alt="GitHub" class="social-icon">
+        </a>
+        <a href="https://linkedin.com/in/crxxtian" target="_blank">
+            <img src="/assets/images/linkedin.svg" alt="LinkedIn" class="social-icon">
         </a>
     </div>
-
     <div class="arrow"></div>
 </section>
 
 <section class="section-highlight">
-    <h2 class="section-title">Latest Blog Posts</h2>
-
+    <h2 class="section-title glitch" data-text="Latest Research">Latest Research</h2>
     <div class="post-preview-list">
         {% for post in site.posts limit:3 %}
         <div class="post-preview">
@@ -68,17 +49,7 @@ title: Home
         </div>
         {% endfor %}
     </div>
-
     <div class="view-all-container">
-        <a class="view-all" href="/blog">View all posts →</a>
+        <a href="/blog" class="view-all">View all posts</a>
     </div>
 </section>
-
-<footer>
-    <p class="footer-text">© 2025 crxxtian. All rights reserved.</p>
-    <div class="footer-links">
-        <a href="https://github.com/crxxtian" target="_blank">GitHub</a>
-        <span class="footer-divider"></span>
-        <a href="https://twitter.com/crxxtian" target="_blank">Twitter</a>
-    </div>
-</footer>
