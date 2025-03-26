@@ -1169,7 +1169,7 @@ footer {
 }
 .hero-title {
     text-align: center;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     line-height: 1.3;
@@ -1181,6 +1181,7 @@ footer {
     overflow-wrap: normal;
     white-space: nowrap;
     flex-shrink: 1;
+    margin: 0 auto
 }
 .hero-buttons {
     display: flex;
