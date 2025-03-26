@@ -7,7 +7,7 @@
     --accent: #1A3C34; /* Midnight olive green */
     --accent-dark: #0F2924; /* Deeper midnight green */
     --accent-secondary: #8A7A3D; /* Muted forest gold */
-    --accent-neon: #4CAF50; /* Muted forest green glow */
+    --accent-neon: #2E7D32; /* Deeper forest green */
     --card-bg: #1A1A1A;
     --font-main: 'JetBrains Mono', monospace;
     --font-secondary: 'Poppins', sans-serif;
@@ -16,8 +16,8 @@
     --border: 1px solid rgba(26, 60, 52, 0.3);
     --radius: 12px;
     --transition: 0.3s ease-in-out;
-    --glow: 0 0 10px rgba(26, 60, 52, 0.5);
-    --glow-neon: 0 0 10px rgba(76, 175, 80, 0.5);
+    --glow: 0 0 5px rgba(26, 60, 52, 0.3);
+    --glow-neon: 0 0 5px rgba(46, 125, 50, 0.3);
 }
 
 * {
@@ -60,7 +60,7 @@ a:hover {
 a:focus {
     outline: none;
     color: var(--accent-neon);
-    box-shadow: var(--glow);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 ::selection {
@@ -118,7 +118,6 @@ a:focus {
 
 .nav-link:hover {
     color: var(--accent-neon);
-    text-shadow: var(--glow-neon);
 }
 
 .nav-link:focus {
@@ -140,19 +139,18 @@ a:focus {
     width: 30px;
     height: 30px;
     opacity: 0.6;
-    transition: transform var(--transition), opacity var(--transition), filter var(--transition);
+    transition: transform var(--transition), opacity var(--transition);
 }
 
 .social-icon:hover {
     transform: scale(1.2);
     opacity: 1;
-    filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.5));
 }
 
 .hero {
     padding: 10rem 2rem 6rem;
     text-align: center;
-    background: linear-gradient(45deg, var(--bg) 0%, var(--accent-dark) 50%, #2E3A24 100%);
+    background: linear-gradient(45deg, var(--bg) 0%, var(--accent-dark) 50%, #1B2A1F 100%);
     background-size: 200% 200%;
     animation: gradientFlow 10s ease-in-out infinite;
     position: relative;
@@ -170,9 +168,9 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(26, 60, 52, 0.3) 2px, transparent 2px);
-    background-size: 30px 30px;
-    opacity: 0.2;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="1" height="1" fill="rgba(46, 125, 50, 0.1)" /></svg>');
+    background-size: 40px 40px;
+    opacity: 0.1;
     z-index: 0;
     animation: particleFloat 15s linear infinite;
 }
@@ -184,15 +182,9 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-            to bottom,
-            rgba(26, 60, 52, 0.1),
-            rgba(26, 60, 52, 0.3) 50%,
-            rgba(26, 60, 52, 0.5)
-    );
-    opacity: 0.3;
+    background: linear-gradient(to bottom, rgba(26, 60, 52, 0.1), rgba(26, 60, 52, 0.4));
+    opacity: 0.5;
     z-index: 0;
-    animation: fogFlow 20s linear infinite;
 }
 
 @keyframes gradientFlow {
@@ -204,11 +196,6 @@ a:focus {
 @keyframes particleFloat {
     0% { background-position: 0 0; }
     100% { background-position: 60px 60px; }
-}
-
-@keyframes fogFlow {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
 }
 
 .hero-fireflies {
@@ -223,11 +210,11 @@ a:focus {
 
 .firefly {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
     background: var(--accent-neon);
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent-neon);
+    box-shadow: 0 0 4px var(--accent-neon);
     animation: floatFirefly 5s infinite ease-in-out;
     opacity: 0;
 }
@@ -253,62 +240,22 @@ a:focus {
     font-family: var(--font-futuristic);
     font-size: 4rem;
     font-weight: 700;
-    color: var(--accent-neon);
+    color: var(--fg);
     margin-bottom: 1.5rem;
     letter-spacing: 3px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-neon);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
     display: inline-block;
-    animation: neonFlicker 3s infinite;
-}
-
-.hero-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--accent-neon);
-    box-shadow: 0 0 10px var(--accent-neon);
-    animation: pulseUnderline 2s infinite;
-}
-
-@keyframes neonFlicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-neon);
-        opacity: 1;
-    }
-    20%, 24%, 55% {
-        text-shadow: none;
-        opacity: 0.7;
-    }
-}
-
-@keyframes pulseUnderline {
-    0% {
-        transform: scaleX(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scaleX(0.95);
-        opacity: 0.6;
-    }
-    100% {
-        transform: scaleX(1);
-        opacity: 1;
-    }
 }
 
 .hero-title .letter {
     display: inline-block;
-    transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+    transition: transform 0.2s ease, color 0.3s ease;
 }
 
 .hero-title:hover .letter {
-    color: var(--accent-secondary);
-    text-shadow: 0 0 8px rgba(138, 122, 61, 0.5);
+    color: var(--accent-neon);
     transform: translateY(-5px);
 }
 
@@ -349,39 +296,39 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    color: var(--accent-neon);
+    color: var(--fg);
 }
 
 .glitch::before {
-    left: 3px;
-    text-shadow: -3px 0 #8A7A3D; /* Updated to match new --accent-secondary */
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-secondary);
     clip: rect(0, 900px, 0, 0);
     animation: glitch-top 1s linear infinite;
 }
 
 .glitch::after {
-    left: -3px;
-    text-shadow: 3px 0 var(--accent-neon);
+    left: -2px;
+    text-shadow: 2px 0 var(--accent-neon);
     clip: rect(0, 900px, 0, 0);
     animation: glitch-bottom 1.5s linear infinite;
 }
 
 @keyframes glitch {
-    2%, 64% { transform: translate(3px, 0) skew(0deg); }
-    4%, 60% { transform: translate(-3px, 0) skew(0deg); }
-    62% { transform: translate(0, 0) skew(6deg); }
+    2%, 64% { transform: translate(2px, 0) skew(0deg); }
+    4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+    62% { transform: translate(0, 0) skew(4deg); }
 }
 
 @keyframes glitch-top {
-    2%, 64% { transform: translate(3px, -3px); }
-    4%, 60% { transform: translate(-3px, 3px); }
-    62% { transform: translate(0, 0) skew(6deg); }
+    2%, 64% { transform: translate(2px, -2px); }
+    4%, 60% { transform: translate(-2px, 2px); }
+    62% { transform: translate(0, 0) skew(4deg); }
 }
 
 @keyframes glitch-bottom {
-    2%, 64% { transform: translate(-3px, 0); }
-    4%, 60% { transform: translate(3px, 0); }
-    62% { transform: translate(0, 0) skew(-6deg); }
+    2%, 64% { transform: translate(-2px, 0); }
+    4%, 60% { transform: translate(2px, 0); }
+    62% { transform: translate(0, 0) skew(-4deg); }
 }
 
 .hero-subtitle {
@@ -399,32 +346,20 @@ a:focus {
 
 .role {
     padding: 0.3rem 1rem;
-    border: 2px solid var(--accent-neon);
+    border: 1px solid var(--accent);
     border-radius: 50px;
-    background: rgba(26, 60, 52, 0.2);
-    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    background: rgba(26, 60, 52, 0.1);
+    transition: background var(--transition), transform var(--transition), border-color var(--transition);
 }
 
 .role.typed {
-    animation: glowPulse 2s infinite ease-in-out;
-}
-
-@keyframes glowPulse {
-    0% {
-        box-shadow: 0 0 5px var(--accent-neon);
-    }
-    50% {
-        box-shadow: 0 0 15px var(--accent-neon);
-    }
-    100% {
-        box-shadow: 0 0 5px var(--accent-neon);
-    }
+    border-color: var(--accent-neon);
 }
 
 .role:hover {
-    background: rgba(26, 60, 52, 0.4);
+    background: rgba(26, 60, 52, 0.3);
     transform: scale(1.05);
-    box-shadow: var(--glow-neon);
+    border-color: var(--accent-neon);
 }
 
 .role-divider {
@@ -437,15 +372,19 @@ a:focus {
     max-width: 750px;
     margin: 0 auto 3rem;
     line-height: 2;
-    opacity: 1;
     font-weight: 400;
     position: relative;
     z-index: 1;
-    background: rgba(26, 60, 52, 0.1);
+    background: rgba(26, 60, 52, 0.05);
     padding: 1.5rem;
     border-radius: var(--radius);
-    border: 1px solid var(--accent-neon);
-    box-shadow: var(--shadow), var(--glow-neon);
+    border: 1px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition);
+}
+
+.hero-intro:hover {
+    transform: translateY(-3px);
 }
 
 .fade-in {
@@ -470,48 +409,25 @@ a:focus {
 .hero-buttons a {
     padding: 0.9rem 2rem;
     border-radius: var(--radius);
-    background: var(--accent);
-    color: #000;
+    background: var(--accent-dark);
+    color: var(--fg);
     font-family: var(--font-main);
     font-weight: 700;
     font-size: 1rem;
-    box-shadow: var(--shadow);
+    box-shadow: inset 0 0 5px rgba(46, 125, 50, 0.2), 0 2px 10px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
     transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
 }
 
-.hero-buttons a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(76, 175, 80, 0.3);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.hero-buttons a:hover::before {
-    opacity: 1;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(76, 175, 80, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
-}
-
 .hero-buttons a:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-    background: var(--accent-neon);
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 5px rgba(46, 125, 50, 0.4), 0 4px 15px rgba(0, 0, 0, 0.5);
+    background: var(--accent);
 }
 
 .hero-buttons a:focus {
-    box-shadow: 0 0 8px var(--accent-neon);
+    box-shadow: inset 0 0 5px rgba(46, 125, 50, 0.4), 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .arrow {
@@ -538,41 +454,25 @@ a:focus {
     background: var(--bg-alt);
     border-top: var(--border);
     position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.section-highlight::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(76, 175, 80, 0.05) 2px,
-            rgba(76, 175, 80, 0.05) 4px
-    );
-    opacity: 0.2;
-    z-index: 0;
-    animation: scanline 5s linear infinite;
-}
-
-@keyframes scanline {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 100px; }
+.section-highlight.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .section-title {
     font-family: var(--font-futuristic);
     font-size: 2.5rem;
-    color: var(--accent-neon);
+    color: var(--fg);
     margin-bottom: 3rem;
     text-align: center;
     font-weight: 700;
     letter-spacing: 1.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px var(--accent-neon);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
 }
@@ -591,18 +491,17 @@ a:focus {
     background: var(--card-bg);
     border-radius: var(--radius);
     border: 1px solid var(--accent);
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     position: relative;
-    will-change: transform;
 }
 
 .post-preview:hover, .portfolio-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     border-color: var(--accent-neon);
 }
 
@@ -613,9 +512,7 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    border: 2px solid transparent;
-    border-image: linear-gradient(45deg, var(--accent), var(--accent-neon)) 1;
-    border-image-slice: 1;
+    border: 2px solid var(--accent-neon);
     opacity: 0;
     transition: opacity var(--transition);
 }
@@ -624,37 +521,11 @@ a:focus {
     opacity: 1;
 }
 
-.post-preview::after, .portfolio-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(76, 175, 80, 0.05) 2px,
-            rgba(76, 175, 80, 0.05) 4px
-    );
-    opacity: 0.2;
-    z-index: 0;
-    animation: scanline 5s linear infinite;
-}
-
 .post-thumbnail {
     width: 100%;
     height: 150px;
-    background: linear-gradient(45deg, var(--accent), var(--accent-neon));
+    background: linear-gradient(45deg, var(--accent), var(--accent-dark));
     border-bottom: var(--border);
-    animation: gradientShift 5s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 .post-content, .card-content {
@@ -670,15 +541,14 @@ a:focus {
     font-family: var(--font-futuristic);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--accent-neon);
+    color: var(--fg);
     font-weight: 600;
     letter-spacing: 0.5px;
-    transition: color var(--transition), text-shadow var(--transition);
+    transition: color var(--transition);
 }
 
 .post-content h3:hover, .card-header h3:hover {
-    color: var(--accent-secondary);
-    text-shadow: var(--glow-neon);
+    color: var(--accent-neon);
 }
 
 .post-date, .card-header p {
@@ -698,25 +568,23 @@ a:focus {
     display: inline-block;
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-    background: var(--accent);
-    color: #000;
+    background: var(--accent-dark);
+    color: var(--fg);
     border-radius: var(--radius);
     font-family: var(--font-main);
     font-weight: 600;
     font-size: 0.9rem;
     text-align: center;
-    transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+    transition: transform var(--transition), background var(--transition);
 }
 
 .read-more-btn:hover {
-    transform: scale(1.03);
-    background: var(--accent-neon);
-    box-shadow: var(--glow-neon);
+    transform: translateY(-2px);
+    background: var(--accent);
 }
 
 .read-more-btn:focus {
-    background: var(--accent-neon);
-    box-shadow: var(--glow-neon);
+    background: var(--accent);
 }
 
 .view-all-container {
@@ -743,20 +611,18 @@ a:focus {
     border-color: var(--accent-neon);
 }
 
-/* Portfolio-Specific Styles */
 .portfolio-card {
     background: linear-gradient(145deg, var(--card-bg), var(--accent-dark));
-    border: 1px solid var(--accent-neon);
+    border: 1px solid var(--accent);
     position: relative;
     overflow: hidden;
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .portfolio-card:hover {
-    transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
-    box-shadow: 0 12px 40px rgba(76, 175, 80, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     border-color: var(--accent-neon);
-    animation: glitch 1s linear infinite;
 }
 
 .portfolio-card::after {
@@ -766,7 +632,7 @@ a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(46, 125, 50, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity var(--transition);
 }
@@ -778,14 +644,23 @@ a:focus {
 .card-header {
     padding: 1rem 1.5rem;
     background: rgba(26, 60, 52, 0.2);
-    border-bottom: 1px solid var(--accent-neon);
+    border-bottom: 1px solid var(--accent);
+    transition: border-color var(--transition);
+}
+
+.portfolio-card:hover .card-header {
+    border-color: var(--accent-neon);
 }
 
 .card-header h3 {
     font-family: var(--font-futuristic);
     font-size: 1.3rem;
+    color: var(--fg);
+    transition: color var(--transition);
+}
+
+.card-header h3:hover {
     color: var(--accent-neon);
-    text-shadow: 0 0 5px var(--accent-neon);
 }
 
 .card-header p {
@@ -801,11 +676,11 @@ a:focus {
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--fg);
-    transition: text-shadow var(--transition);
+    transition: color var(--transition);
 }
 
 .card-content p:hover {
-    text-shadow: 0 0 5px var(--accent-neon);
+    color: var(--accent-neon);
 }
 
 .current-label {
@@ -815,7 +690,6 @@ a:focus {
     border-radius: 4px;
     font-size: 0.8rem;
     margin-left: 0.5rem;
-    box-shadow: var(--glow-neon);
 }
 
 .skills-section .skills-grid {
@@ -832,22 +706,27 @@ a:focus {
     background: var(--card-bg);
     border-radius: var(--radius);
     border: 1px solid var(--accent);
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     padding: 1.5rem;
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .skill-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     border-color: var(--accent-neon);
 }
 
 .skill-card h3 {
     font-family: var(--font-futuristic);
     font-size: 1.2rem;
-    color: var(--accent-neon);
+    color: var(--fg);
     margin-bottom: 0.5rem;
+    transition: color var(--transition);
+}
+
+.skill-card h3:hover {
+    color: var(--accent-neon);
 }
 
 .skill-card p {
@@ -861,11 +740,11 @@ a:focus {
     max-width: 750px;
     margin: 0 auto 3rem;
     line-height: 2;
-    background: rgba(26, 60, 52, 0.1);
+    background: rgba(26, 60, 52, 0.05);
     padding: 1.5rem;
     border-radius: var(--radius);
-    border: 1px solid var(--accent-neon);
-    box-shadow: var(--shadow), var(--glow-neon);
+    border: 1px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .contact-buttons {
@@ -881,11 +760,11 @@ a:focus {
     max-width: 750px;
     margin: 0 auto;
     line-height: 2;
-    background: rgba(26, 60, 52, 0.1);
+    background: rgba(26, 60, 52, 0.05);
     padding: 1.5rem;
     border-radius: var(--radius);
-    border: 1px solid var(--accent-neon);
-    box-shadow: var(--shadow), var(--glow-neon);
+    border: 1px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 

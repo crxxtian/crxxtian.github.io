@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (i === text.length - 1) {
                     role.style.borderRight = 'none';
                     role.style.animation = 'none';
-                    role.classList.add('typed'); // Add class to trigger glow
+                    role.classList.add('typed');
                 }
             }, delay);
-            delay += 100; // Adjust typing speed
+            delay += 100;
         }
-        delay += 500; // Delay between roles
+        delay += 500;
     });
 
     // Firefly Effect for Hero Section
@@ -94,7 +94,7 @@ class Particle {
     }
 
     draw() {
-        ctx.fillStyle = 'rgba(76, 175, 80, 0.5)'; // Matches #4CAF50 with 0.5 opacity
+        ctx.fillStyle = 'rgba(46, 125, 50, 0.5)'; // Updated to match new #2E7D32
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -137,4 +137,24 @@ canvas.addEventListener('mousemove', (e) => {
         particle.speedY = Math.random() * 2 - 1;
         particlesArray.push(particle);
     }
+});
+
+// Scroll-Triggered Animations
+const sections = document.querySelectorAll('.section-highlight');
+const observerOptions = {
+    root: null,
+    threshold: 0.1,
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+sections.forEach(section => {
+    observer.observe(section);
 });
