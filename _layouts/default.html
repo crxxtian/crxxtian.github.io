@@ -6,14 +6,39 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ site.description }}" />
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Poppins:wght@300;400;600;700&family=Exo+2:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-left">
+        <div class="social-links">
+            <a href="https://github.com/crxxtian" target="_blank">
+                <img src="/assets/images/github.png" alt="GitHub" class="social-icon">
+            </a>
+            <a href="https://linkedin.com/in/crxxtian" target="_blank">
+                <img src="/assets/images/linkedin.pjg" alt="LinkedIn" class="social-icon">
+            </a>
+        </div>
+    </div>
+    <nav class="nav-right">
+        <a href="/" class="nav-link">Home</a>
+        <span class="nav-divider">/</span>
+        <a href="/blog" class="nav-link">Blog</a>
+        <span class="nav-divider">/</span>
+        <a href="/portfolio" class="nav-link">Portfolio</a>
+    </nav>
+</header>
 
 <!-- MAIN CONTENT -->
 <main class="page-container">
     {{ content }}
 </main>
+
+<!-- FOOTER -->
+<footer>
+    <p class="footer-text">© {{ site.time | date: '%Y' }} crxxtian. All rights reserved.</p>
+</footer>
 
 <script src="/assets/js/scripts.js"></script>
 <script src="/assets/js/main.js"></script>
