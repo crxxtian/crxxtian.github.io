@@ -2,7 +2,7 @@
 
 A sleek, cyberpunk-inspired portfolio theme with a forest-green glow. Built with simplicity and speed in mind. This is perfect for cybersecurity students, tech enthusiasts, or anyone wanting a stylish, minimal static site.
 
-> Designed and built by [Cris](https://github.com/crxxtian) to showcase projects, blogs, and a tech-driven journey.
+> Designed and built by [me](https://github.com/crxxtian) to showcase projects, blogs, and a tech-driven journey.
 
 ---
 
