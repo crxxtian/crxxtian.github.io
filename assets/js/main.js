@@ -1,19 +1,17 @@
-// Typing Animation for Hero Subtitle
 document.addEventListener('DOMContentLoaded', () => {
+    // Typing Animation for Hero Subtitle
     const roles = document.querySelectorAll('.role');
     let delay = 0;
 
-    roles.forEach((role, index) => {
+    roles.forEach((role) => {
         const text = role.textContent;
         role.textContent = '';
         role.style.borderRight = '2px solid var(--accent-neon)';
         role.style.animation = 'blink 0.7s step-end infinite';
 
-        // Typing effect
         for (let i = 0; i < text.length; i++) {
             setTimeout(() => {
                 role.textContent += text[i];
-                // Stop blinking cursor and add glow when typing is complete for this role
                 if (i === text.length - 1) {
                     role.style.borderRight = 'none';
                     role.style.animation = 'none';
@@ -25,13 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
         delay += 500;
     });
 
-    // Firefly Effect for Hero Section
+    // Add blinking cursor style
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+
+    // Fireflies
     const hero = document.querySelector('.hero');
     const firefliesContainer = document.createElement('div');
     firefliesContainer.className = 'hero-fireflies';
     hero.appendChild(firefliesContainer);
 
-    // Create 20 fireflies
     for (let i = 0; i < 20; i++) {
         const firefly = document.createElement('div');
         firefly.className = 'firefly';
@@ -40,121 +46,129 @@ document.addEventListener('DOMContentLoaded', () => {
         firefly.style.animationDelay = `${Math.random() * 5}s`;
         firefliesContainer.appendChild(firefly);
     }
-});
 
-// Blinking cursor animation
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-    @keyframes blink {
-        50% { border-color: transparent; }
-    }
-`;
-document.head.appendChild(styleSheet);
+    // Canvas Particle Background
+    const canvas = document.createElement('canvas');
+    canvas.className = 'hero-particles';
+    Object.assign(canvas.style, {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        zIndex: '0',
+    });
+    hero.appendChild(canvas);
 
-// Particle Effect for Hero Background
-const hero = document.querySelector('.hero');
-const canvas = document.createElement('canvas');
-canvas.className = 'hero-particles';
-hero.appendChild(canvas);
-canvas.style.position = 'absolute';
-canvas.style.top = '0';
-canvas.style.left = '0';
-canvas.style.width = '100%';
-canvas.style.height = '100%';
-canvas.style.zIndex = '0';
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
 
-const ctx = canvas.getContext('2d');
-let particlesArray = [];
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
 
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-        if (this.size > 0.2) this.size -= 0.01;
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.speedY = Math.random() * 1 - 0.5;
+        }
 
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.size > 0.2) this.size -= 0.01;
+            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.fillStyle = 'rgba(46, 125, 50, 0.5)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
 
-    draw() {
-        ctx.fillStyle = 'rgba(46, 125, 50, 0.5)'; // Updated to match new #2E7D32
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-function initParticles() {
-    particlesArray = [];
-    const numberOfParticles = (canvas.width * canvas.height) / 9000;
-    for (let i = 0; i < numberOfParticles; i++) {
-        particlesArray.push(new Particle());
-    }
-}
-
-function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
-        if (particlesArray[i].size <= 0.2) {
-            particlesArray.splice(i, 1);
-            i--;
+    function initParticles() {
+        particlesArray = [];
+        const number = (canvas.width * canvas.height) / 9000;
+        for (let i = 0; i < number; i++) {
             particlesArray.push(new Particle());
         }
     }
-    requestAnimationFrame(animateParticles);
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
+            if (particlesArray[i].size <= 0.2) {
+                particlesArray.splice(i, 1);
+                i--;
+                particlesArray.push(new Particle());
+            }
+        }
+        requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    // Particle boost on mousemove (desktop only)
+    if (!('ontouchstart' in window)) {
+        canvas.addEventListener('mousemove', (e) => {
+            for (let i = 0; i < 5; i++) {
+                const particle = new Particle();
+                particle.x = e.x;
+                particle.y = e.y;
+                particle.size = Math.random() * 3 + 1;
+                particle.speedX = Math.random() * 2 - 1;
+                particle.speedY = Math.random() * 2 - 1;
+                particlesArray.push(particle);
+            }
+        });
+    }
+
+    // Scroll Reveal Sections
+    const sections = document.querySelectorAll('.section-highlight');
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+});
+
+// Parallax Effect (Mouse + Touch support)
+function applyParallax(x, y) {
+    const elements = document.querySelectorAll('[data-parallax]');
+    const speed = 0.05;
+    const xOffset = (window.innerWidth - x * speed) / 100;
+    const yOffset = (window.innerHeight - y * speed) / 100;
+
+    elements.forEach((el) => {
+        el.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+    });
 }
 
-initParticles();
-animateParticles();
-
-// Mouse interaction
-canvas.addEventListener('mousemove', (e) => {
-    for (let i = 0; i < 5; i++) {
-        const particle = new Particle();
-        particle.x = e.x;
-        particle.y = e.y;
-        particle.size = Math.random() * 3 + 1;
-        particle.speedX = Math.random() * 2 - 1;
-        particle.speedY = Math.random() * 2 - 1;
-        particlesArray.push(particle);
-    }
-});
-
-// Scroll-Triggered Animations
-const sections = document.querySelectorAll('.section-highlight');
-const observerOptions = {
-    root: null,
-    threshold: 0.1,
-};
-
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
+if (!('ontouchstart' in window)) {
+    document.addEventListener('mousemove', (e) => {
+        applyParallax(e.pageX, e.pageY);
     });
-}, observerOptions);
-
-sections.forEach(section => {
-    observer.observe(section);
-});
+} else {
+    document.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        applyParallax(touch.pageX, touch.pageY);
+    }, { passive: true });
+}

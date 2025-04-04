@@ -1025,3 +1025,49 @@ footer {
   .social-icon { width: 18px; height: 18px; }
   .arrow { border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 12px solid var(--accent-dark); }
 }
+.card-3d {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 350px;
+    height: 220px;
+  }
+  
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+  }
+  
+  .card-3d:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    color: var(--fg);
+    box-shadow: var(--shadow);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .card-front {
+    background: var(--card-bg);
+  }
+  
+  .card-back {
+    background: var(--accent-dark);
+    transform: rotateY(180deg);
+  }
+  
