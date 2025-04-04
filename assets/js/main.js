@@ -172,3 +172,9 @@ if (!('ontouchstart' in window)) {
         applyParallax(touch.pageX, touch.pageY);
     }, { passive: true });
 }
+
+import { initMandelbulb } from './mandelbulb.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  initMandelbulb('mandelbulb-bg');
+});

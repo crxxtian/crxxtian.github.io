@@ -1070,4 +1070,20 @@ footer {
     background: var(--accent-dark);
     transform: rotateY(180deg);
   }
+  #mandelbulb-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  canvas {
+    display: block;
+  }
+  .hero {
+    background-color: rgba(10, 10, 10, 0.85); /* Soft overlay */
+    backdrop-filter: blur(4px); /* Optional, adds polish */
+    border-radius: 12px;
+    padding: 3rem 2rem;
+  }
   
