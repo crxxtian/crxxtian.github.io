@@ -4,47 +4,70 @@ title: Home
 ---
 
 <section class="hero">
-    <h1 class="hero-title glitch" data-text="Hey, welcome to my website.">
-        <span class="letter">H</span><span class="letter">e</span><span class="letter">y</span><span class="letter">,</span>
-        <span class="letter">w</span><span class="letter">e</span><span class="letter">l</span><span class="letter">c</span><span class="letter">o</span><span class="letter">m</span><span class="letter">e</span>
-        <span class="letter">t</span><span class="letter">o</span>
-        <span class="letter">m</span><span class="letter">y</span>
-        <span class="letter">w</span><span class="letter">e</span><span class="letter">b</span><span class="letter">s</span><span class="letter">i</span><span class="letter">t</span><span class="letter">e</span><span class="letter">.</span>
-    </h1>
-    <p class="hero-subtitle">
-        <span class="role">Student</span>
-        <span class="role-divider">/</span>
-        <span class="role">Analyst</span>
-        <span class="role-divider">/</span>
-        <span class="role">Researcher</span>
-    </p>
-    <p class="hero-intro fade-in">
-        <span class="intro-main">I’m Cris, a cybersecurity student at Illinois State University, joining a Fortune 500 FinTech company in 2025.</span>
-        <span class="intro-secondary">Passionate about cyber research and the intersection between tech and finance.</span>
-    </p>
-    <div class="hero-buttons">
-        <a href="/portfolio" class="button-primary">> View Portfolio</a>
-        <a href="/blog" class="button-secondary">> Read My Blog</a>
-    </div>
-    <div class="arrow"></div>
+  <h1 class="hero-title glitch" data-text="Hey, welcome to my website.">
+    <span class="letter">H</span><span class="letter">e</span><span class="letter">y</span><span class="letter">,</span>
+    <span class="letter">w</span><span class="letter">e</span><span class="letter">l</span><span class="letter">c</span><span class="letter">o</span><span class="letter">m</span><span class="letter">e</span>
+    <span class="letter">t</span><span class="letter">o</span>
+    <span class="letter">m</span><span class="letter">y</span>
+    <span class="letter">w</span><span class="letter">e</span><span class="letter">b</span><span class="letter">s</span><span class="letter">i</span><span class="letter">t</span><span class="letter">e</span><span class="letter">.</span>
+  </h1>
+  <p class="hero-subtitle">
+    <span class="role">Student</span>
+    <span class="role-divider">/</span>
+    <span class="role">Analyst</span>
+    <span class="role-divider">/</span>
+    <span class="role">Researcher</span>
+  </p>
+  <p class="hero-intro fade-in">
+    <span class="intro-main">I’m Cris, a cybersecurity student at Illinois State University, joining a Fortune 500 FinTech company in 2025.</span>
+    <span class="intro-secondary">Passionate about cyber research and the intersection between tech and finance.</span>
+  </p>
+  <div class="hero-buttons">
+    <a href="/portfolio" class="button-primary">&gt; View Portfolio</a>
+    <a href="/blog" class="button-secondary">&gt; Read My Blog</a>
+  </div>
+  <div class="arrow"></div>
 </section>
 
 <section class="section-highlight">
-    <h2 class="section-title glitch" data-text="Latest Post">Latest Post</h2>
-    <div class="post-preview-list">
-        {% for post in site.posts limit:3 %}
-        <div class="post-preview">
-            <div class="post-thumbnail"></div>
-            <div class="post-content">
-                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-                <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
-                <p class="post-excerpt">{{ post.excerpt }}</p>
-                <a class="read-more-btn" href="{{ post.url }}">→ Read More</a>
-            </div>
-        </div>
-        {% endfor %}
+  <h2 class="section-title glitch" data-text="Latest Post">Latest Post</h2>
+  <div class="post-preview-list">
+    {% for post in site.posts limit:3 %}
+    <div class="post-preview">
+      <div class="post-thumbnail"></div>
+      <div class="post-content">
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+        <p class="post-excerpt">{{ post.excerpt }}</p>
+        <a class="read-more-btn" href="{{ post.url }}">→ Read More</a>
+      </div>
     </div>
-    <div class="view-all-container">
-        <a href="/blog" class="view-all">View all posts</a>
+    {% endfor %}
+  </div>
+  <div class="view-all-container">
+    <a href="/blog" class="view-all">View all posts</a>
+  </div>
+</section>
+
+<section class="section-highlight">
+  <h2 class="section-title glitch" data-text="Projects">Projects</h2>
+  <div class="post-preview-list">
+    {% assign projects = site.data.projects %}
+    {% for project in projects %}
+    <div class="post-preview">
+      <div class="post-thumbnail"></div>
+      <div class="post-content">
+        <h3><a href="{{ project.github_url }}" target="_blank">{{ project.name }}</a></h3>
+        <p class="post-date project-category {{ project.category | downcase | replace: ' ', '' }}">
+          {{ project.category }}
+        </p>
+        <p class="post-excerpt">{{ project.description }}</p>
+        <a class="read-more-btn" href="{{ project.github_url }}" target="_blank">→ GitHub Repo</a>
+      </div>
     </div>
+    {% endfor %}
+  </div>
+  <div class="view-all-container">
+    <a href="https://github.com/crxxtian" target="_blank" class="view-all">View all projects</a>
+  </div>
 </section>
