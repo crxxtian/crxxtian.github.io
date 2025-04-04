@@ -174,7 +174,4 @@ if (!('ontouchstart' in window)) {
 }
 
 import { initMandelbulb } from './mandelbulb.js';
-
-document.addEventListener('DOMContentLoaded', () => {
-  initMandelbulb('mandelbulb-bg');
-});
+initMandelbulb('mandelbulb-bg');
