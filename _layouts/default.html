@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Poppins:wght@300;400;600;700&family=Exo+2:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="mandelbulb-bg"></div>
+
 <!-- NAVBAR -->
 <header class="navbar">
     <div class="nav-left">
@@ -43,4 +45,11 @@
 <script src="/assets/js/scripts.js"></script>
 <script src="/assets/js/main.js"></script>
 </body>
+<script type="module">
+    import { initMandelbulb } from '/assets/js/mandelbulb.js';
+    window.addEventListener('DOMContentLoaded', () => {
+      initMandelbulb('mandelbulb-bg');
+    });
+  </script>
+  
 </html>

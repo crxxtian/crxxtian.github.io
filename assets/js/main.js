@@ -173,5 +173,4 @@ if (!('ontouchstart' in window)) {
     }, { passive: true });
 }
 
-import { initMandelbulb } from './mandelbulb.js';
-initMandelbulb('mandelbulb-bg');
+

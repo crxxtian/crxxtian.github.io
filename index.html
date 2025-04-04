@@ -2,7 +2,6 @@
 layout: default
 title: Home
 ---
-<div id="mandelbulb-bg"></div>
 
 <section class="hero">
   <h1 class="hero-title glitch" data-text="Hey, welcome to my website.">
@@ -51,34 +50,33 @@ title: Home
 </section>
 
 <section class="section-highlight">
-    <h2 class="section-title glitch" data-text="Projects">Projects</h2>
-    <div class="post-preview-list">
-      {% assign projects = site.data.projects %}
-      {% for project in projects %}
-      <div class="post-preview">
-        
-        <!-- Project Image Container -->
-        <div class="post-thumbnail project-image-container">
-          <img src="{{ project.image }}" alt="{{ project.name }}" class="project-image" />
-        </div>
-  
-        <!-- Project Content -->
-        <div class="post-content">
-          <h3>
-            <a href="{{ project.github_url }}" target="_blank">{{ project.name }}</a>
-          </h3>
-          <p class="post-date project-category {{ project.category | downcase | replace: ' ', '' }}">
-            {{ project.category }}
-          </p>
-          <p class="post-excerpt">{{ project.description }}</p>
-          <a class="read-more-btn" href="{{ project.github_url }}" target="_blank">→ GitHub Repo</a>
-        </div>
-  
+  <h2 class="section-title glitch" data-text="Projects">Projects</h2>
+  <div class="post-preview-list">
+    {% assign projects = site.data.projects %}
+    {% for project in projects %}
+    <div class="post-preview">
+      
+      <!-- Project Image Container -->
+      <div class="post-thumbnail project-image-container">
+        <img src="{{ project.image }}" alt="{{ project.name }}" class="project-image" />
       </div>
-      {% endfor %}
+
+      <!-- Project Content -->
+      <div class="post-content">
+        <h3>
+          <a href="{{ project.github_url }}" target="_blank">{{ project.name }}</a>
+        </h3>
+        <p class="post-date project-category {{ project.category | downcase | replace: ' ', '' }}">
+          {{ project.category }}
+        </p>
+        <p class="post-excerpt">{{ project.description }}</p>
+        <a class="read-more-btn" href="{{ project.github_url }}" target="_blank">→ GitHub Repo</a>
+      </div>
+
     </div>
-    <div class="view-all-container">
-      <a href="https://github.com/crxxtian" target="_blank" class="view-all">View all projects</a>
-    </div>
-  </section>
-  
+    {% endfor %}
+  </div>
+  <div class="view-all-container">
+    <a href="https://github.com/crxxtian" target="_blank" class="view-all">View all projects</a>
+  </div>
+</section>
