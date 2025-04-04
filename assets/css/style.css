@@ -1225,13 +1225,13 @@ footer {
     height: 100%;
     object-fit: cover;
     display: block;
-    filter: brightness(0.9) contrast(1.1);
+    filter: brightness(1) contrast(1.1);
     transition: filter 0.3s ease, transform 0.3s ease;
     mix-blend-mode: multiply;
   }
   
   .post-preview:hover .project-image {
-    filter: brightness(0.8);
+    filter: brightness(1.1);
     transform: scale(1.03);
   }
   
