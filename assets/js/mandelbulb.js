@@ -43,7 +43,7 @@ export function initMandelbulb(containerId = 'mandelbulb-bg') {
         },
         vertexShader: `
             void main() {
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                gl_Position = vec4(position, 1.0);
             }
         `,
         fragmentShader: `
@@ -74,20 +74,21 @@ export function initMandelbulb(containerId = 'mandelbulb-bg') {
                     r = length(z);
                     if (r > BAILOUT) break;
 
-                    float zr = z.x;
-                    float zi = z.y;
-                    float zj = z.z;
+                    float r2 = dot(z, z);
+                    float r4 = r2 * r2;
+                    float r8 = r4 * r4;
 
-                    float a = atan(sqrt(zr * zr + zi * zi), zj);
+                    float a = atan(sqrt(z.x*z.x + z.y*z.y), z.z);
                     float b = 8.0 * a;
-                    float r_n = pow(r, 8.0);
+                    float theta = 8.0 * atan(z.y, z.x);
+                    float r_pow = pow(r, 8.0);
 
-                    z = r_n * vec3(
-                        sin(b) * cos(8.0 * atan(zi, zr)),
-                        sin(b) * sin(8.0 * atan(zi, zr)),
+                    z = r_pow * vec3(
+                        sin(b) * cos(theta),
+                        sin(b) * sin(theta),
                         cos(b)
-                    );
-                    z += c;
+                    ) + c;
+
                     dr = 8.0 * pow(r, 7.0) * dr + 1.0;
                 }
                 return smoothstep(3.0, BAILOUT, r);
@@ -118,18 +119,9 @@ export function initMandelbulb(containerId = 'mandelbulb-bg') {
                 vec3 color = vec3(0.0);
                 if (depth > 0.0) {
                     float normalizedDepth = depth * 2.0;
-                    vec3 oliveGreen = vec3(0.16, 0.49, 0.35);   // #2e7d32
-                    vec3 darkGreen = vec3(0.10, 0.24, 0.20);    // #1a3c34
-                    color = mix(darkGreen, oliveGreen, normalizedDepth);
-
-                    vec3 normal = normalize(vec3(
-                        mandelbulb((p - offset + vec3(0.001, 0.0, 0.0)) / zoom) - mandelbulb((p - offset - vec3(0.001, 0.0, 0.0)) / zoom),
-                        mandelbulb((p - offset + vec3(0.0, 0.001, 0.0)) / zoom) - mandelbulb((p - offset - vec3(0.0, 0.001, 0.0)) / zoom),
-                        mandelbulb((p - offset + vec3(0.0, 0.0, 0.001)) / zoom) - mandelbulb((p - offset - vec3(0.0, 0.0, 0.001)) / zoom)
-                    ));
-                    vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
-                    float diffuse = max(0.1, dot(normal, lightDir));
-                    color *= diffuse * 1.2;
+                    vec3 color1 = vec3(0.1, 0.4, 0.7);
+                    vec3 color2 = vec3(0.9, 0.2, 0.5);
+                    color = mix(color1, color2, normalizedDepth);
                 }
 
                 gl_FragColor = vec4(color, 1.0);
