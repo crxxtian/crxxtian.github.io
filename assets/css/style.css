@@ -1174,35 +1174,40 @@ footer {
     font-family: var(--font-main);
     font-size: 0.75rem;
     font-weight: 600;
-    padding: 0.35rem 0.8rem;
+    padding: 0.4rem 0.9rem;
     margin-bottom: 1rem;
-    border-radius: 30px;
-    background: linear-gradient(145deg, rgba(46, 125, 50, 0.15), rgba(26, 60, 52, 0.25));
+    border-radius: 999px;
+    background: rgba(46, 125, 50, 0.15);
     color: var(--accent-neon);
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: inset 0 0 4px rgba(46, 125, 50, 0.15), 0 1px 4px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(46, 125, 50, 0.3);
+    box-shadow: inset 0 0 5px rgba(46, 125, 50, 0.1), 0 1px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 1;
 }
 
 .project-category::before {
-    content: '🚀';
     font-size: 0.85rem;
+    display: inline-block;
+    transform: translateY(1px);
 }
 
-/* Specific category emojis */
-.project-category.web::before {
+/* Specific emojis */
+.project-category.webdevelopment::before {
     content: '🌐';
 }
-.project-category.security::before {
+.project-category.securitytools::before {
     content: '🛡️';
 }
-.project-category.ai::before {
+.project-category.aiagents::before {
     content: '🤖';
 }
 
+/* Hover effect */
 .project-category:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(145deg, rgba(46, 125, 50, 0.3), rgba(26, 60, 52, 0.3));
-    box-shadow: inset 0 0 5px rgba(46, 125, 50, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
+    background: rgba(46, 125, 50, 0.25);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: inset 0 0 8px rgba(46, 125, 50, 0.2), 0 2px 8px rgba(0, 0, 0, 0.3);
 }

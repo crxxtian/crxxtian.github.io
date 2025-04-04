@@ -55,7 +55,9 @@ title: Home
     {% assign projects = site.data.projects %}
     {% for project in projects %}
     <div class="post-preview">
-      <div class="post-thumbnail"></div>
+        <div class="post-thumbnail">
+            <img src="{{ project.image }}" alt="{{ project.name }}" class="project-thumb" />
+          </div>          
       <div class="post-content">
         <h3><a href="{{ project.github_url }}" target="_blank">{{ project.name }}</a></h3>
         <p class="post-date project-category {{ project.category | downcase | replace: ' ', '' }}">
