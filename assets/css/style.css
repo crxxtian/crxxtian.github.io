@@ -426,168 +426,263 @@ a:focus {
   60% { transform: translateX(-50%) translateY(5px); }
 }
 
-/* Sections */
+/* Section Highlight */
 .section-highlight {
-  padding: 8rem 2rem 5rem;
-  background: var(--bg-alt);
-  border-top: var(--border);
-  position: relative;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.section-highlight.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.section-title {
-  font: 700 2.5rem var(--font-futuristic);
-  color: var(--fg);
-  margin-bottom: 3rem;
-  text-align: center;
-  letter-spacing: 1.5px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  position: relative;
-  z-index: 1;
-}
-
-/* Portfolio */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.portfolio-card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  border: 1px solid var(--accent);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  transition: var(--transition);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  border-color: var(--accent-neon);
-}
-
-.portfolio-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 2px solid var(--accent-neon);
-  opacity: 0;
-  transition: var(--transition);
-}
-
-.portfolio-card:hover::before {
-  opacity: 1;
-}
-
-.portfolio-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 100%;
-  background: var(--accent-neon);
-  opacity: 0.5;
-  transition: var(--transition);
-  z-index: 1;
-}
-
-.portfolio-card:hover::after {
-  opacity: 1;
-}
-
-.portfolio-card.experience:nth-child(2)::after,
-.portfolio-card.experience:nth-child(3)::after {
-  content: none;
-}
-
-.card-header {
-  padding: 1rem 1.5rem;
-  background: rgba(26, 60, 52, 0.1);
-  border-bottom: 1px solid var(--accent);
-  transition: var(--transition);
-  flex-grow: 1;
-}
-
-.portfolio-card:hover .card-header {
-  border-color: var(--accent-neon);
-}
-
-.card-header h3 {
-  font: 1.2rem var(--font-futuristic);
-  color: var(--fg);
-  transition: var(--transition);
-  position: relative;
-  padding-left: 2rem;
-}
-
-.card-header h3::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.5rem;
-  height: 1.5rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.7;
-}
-
-.card-header h3:hover {
-  color: var(--accent-neon);
-}
-
-.card-header p {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-top: 0.3rem;
-}
-
-.card-content {
-  padding: 1rem 1.5rem;
-}
-
-.card-content p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--fg);
-  transition: var(--transition);
-}
-
-.card-content p:hover {
-  color: var(--accent-neon);
-}
-
-.current-label {
-  background: var(--accent-neon);
-  color: #000;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
-}
-
-.portfolio-card.experience .card-header h3::before { content: '💼'; }
-.portfolio-card.education .card-header h3::before { content: '🎓'; }
-.portfolio-card.involvement .card-header h3::before { content: '🤝'; }
-.portfolio-card.certifications .card-header h3::before { content: '🏆'; }
+    padding: 8rem 2rem 5rem;
+    background: var(--bg-alt);
+    border-top: var(--border);
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    /* Add subtle particle background */
+    overflow: hidden;
+  }
+  
+  .section-highlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="1" height="1" fill="rgba(46, 125, 50, 0.05)" /></svg>');
+    background-size: 20px 20px;
+    opacity: 0.05;
+    z-index: 0;
+    animation: particleFloat 20s linear infinite;
+  }
+  
+  .section-highlight.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Section Title */
+  .section-title {
+    font: 700 2.5rem var(--font-futuristic);
+    color: var(--fg);
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+    /* Add neon flicker effect */
+    animation: neonFlicker 1.5s ease-in-out;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-neon), transparent);
+    opacity: 0.7;
+  }
+  
+  @keyframes neonFlicker {
+    0%, 100% { opacity: 1; }
+    10%, 30%, 50%, 70% { opacity: 0.6; }
+    20%, 40%, 60% { opacity: 1; }
+  }
+  
+  /* Portfolio Grid */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem; /* Increased gap for better spacing */
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Portfolio Card */
+  .portfolio-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Fade-in animation with stagger */
+    opacity: 0;
+    animation: fadeInCard 0.8s ease-out forwards;
+  }
+  
+  .portfolio-card:nth-child(1) { animation-delay: 0.1s; }
+  .portfolio-card:nth-child(2) { animation-delay: 0.2s; }
+  .portfolio-card:nth-child(3) { animation-delay: 0.3s; }
+  .portfolio-card:nth-child(4) { animation-delay: 0.4s; }
+  .portfolio-card:nth-child(5) { animation-delay: 0.5s; }
+  .portfolio-card:nth-child(6) { animation-delay: 0.6s; }
+  
+  @keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Category-specific gradients */
+  .portfolio-card.experience {
+    background: linear-gradient(145deg, rgba(26, 60, 52, 0.2), rgba(46, 125, 50, 0.1)), var(--card-bg);
+  }
+  
+  .portfolio-card.education {
+    background: linear-gradient(145deg, rgba(46, 125, 50, 0.1), rgba(26, 60, 52, 0.2)), var(--card-bg);
+  }
+  
+  .portfolio-card.involvement {
+    background: linear-gradient(145deg, rgba(138, 122, 61, 0.1), rgba(26, 60, 52, 0.2)), var(--card-bg);
+  }
+  
+  .portfolio-card.certifications {
+    background: linear-gradient(145deg, rgba(46, 125, 50, 0.2), rgba(138, 122, 61, 0.1)), var(--card-bg);
+  }
+  
+  /* Hover effects */
+  .portfolio-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 10px var(--accent-neon);
+    border-color: var(--accent-neon);
+  }
+  
+  .portfolio-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--accent-neon);
+    opacity: 0;
+    transition: var(--transition);
+  }
+  
+  .portfolio-card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Neon pulse effect on the left border */
+  .portfolio-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--accent-neon), transparent);
+    opacity: 0.5;
+    transition: opacity var(--transition);
+    animation: neonPulse 2s infinite ease-in-out;
+    z-index: 1;
+  }
+  
+  .portfolio-card:hover::after {
+    opacity: 1;
+  }
+  
+  @keyframes neonPulse {
+    0%, 100% { background-position: 0 0; }
+    50% { background-position: 0 100%; }
+  }
+  
+  .portfolio-card.experience:nth-child(2)::after,
+  .portfolio-card.experience:nth-child(3)::after {
+    content: none;
+  }
+  
+  /* Card Header */
+  .card-header {
+    padding: 1.5rem; /* Increased padding */
+    background: rgba(26, 60, 52, 0.1);
+    border-bottom: 1px solid var(--accent);
+    transition: var(--transition);
+    flex-grow: 1;
+  }
+  
+  .portfolio-card:hover .card-header {
+    border-color: var(--accent-neon);
+  }
+  
+  .card-header h3 {
+    font: 1.3rem var(--font-futuristic); /* Increased font size */
+    color: var(--fg);
+    letter-spacing: 1px; /* Added letter spacing */
+    transition: var(--transition);
+    position: relative;
+    padding-left: 2.5rem; /* Adjusted for badge */
+  }
+  
+  .card-header h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(46, 125, 50, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--glow-neon);
+    font-size: 1rem;
+    line-height: 1;
+  }
+  
+  .card-header h3:hover {
+    color: var(--accent-neon);
+    animation: glitch 1s linear infinite; /* Glitch effect on hover */
+  }
+  
+  .card-header p {
+    font-size: 0.95rem; /* Slightly increased */
+    color: #b0bec5; /* Lighter color for better contrast */
+    opacity: 0.9;
+    margin-top: 0.5rem; /* Increased spacing */
+  }
+  
+  /* Current Label */
+  .current-label {
+    background: transparent;
+    color: var(--accent-neon);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    border: 1px solid var(--accent-neon);
+    box-shadow: 0 0 5px var(--accent-neon);
+    animation: pulseGlow 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 5px var(--accent-neon); }
+    50% { box-shadow: 0 0 10px var(--accent-neon); }
+  }
+  
+  /* Card Content */
+  .card-content {
+    padding: 2rem 1.5rem; /* Increased padding */
+  }
+  
+  .card-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--fg);
+    transition: var(--transition);
+  }
+  
+  .card-content p:hover {
+    color: var(--accent-neon);
+  }
+  
+  /* Category Icons */
+  .portfolio-card.experience .card-header h3::before { content: '💼'; }
+  .portfolio-card.education .card-header h3::before { content: '🎓'; }
+  .portfolio-card.involvement .card-header h3::before { content: '🤝'; }
+  .portfolio-card.certifications .card-header h3::before { content: '🏆'; }
 
 /* Blog Posts */
 .post-preview-list {
