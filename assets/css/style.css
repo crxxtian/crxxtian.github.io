@@ -580,14 +580,16 @@ a:focus {
   }
   
   .card-header h3 {
-    font: 1.2rem var(--font-futuristic);
+    font: clamp(1rem, 1.8vw, 1.2rem) var(--font-futuristic);
     color: var(--fg);
     letter-spacing: 1px;
     transition: var(--transition);
     position: relative;
     padding-left: 2.5rem;
     white-space: nowrap;
-  }
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }  
   
   .card-header h3::before {
     content: '';
