@@ -1,6 +1,6 @@
 - name: RedWood Cabinets
   category: Web Development
-  description: "A modern website built with Vite, TypeScript, React, shadcn-ui, and Tailwind CSS."
+  description: "A modern website built with Vite, TypeScript, React, and Tailwind CSS."
   github_url: "https://github.com/crxxtian/project-redwood-remodel"
   image: "/assets/icons/redwood.png"
 
@@ -12,6 +12,6 @@
 
 - name: AetherBot
   category: AI Agents
-  description: "An AI agent powered by OpenAI's API for task automation and info retrieval."
+  description: "An AI agent powered by OpenAI's API for network task automation and info retrieval. (Coming Soon)"
   github_url: "https://github.com/crxxtian/aetherbot"
   image: "/assets/icons/aiagent.png"
