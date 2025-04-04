@@ -486,9 +486,9 @@ a:focus {
   }
   
   /* Portfolio */
-.portfolio-grid {
+  .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Increased min width to accommodate longer text */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2.5rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -497,7 +497,7 @@ a:focus {
   }
   
   .portfolio-card {
-    background: var(--card-bg); /* Removed category-specific gradients */
+    background: var(--card-bg);
     border-radius: var(--radius);
     border: 1px solid var(--accent);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -580,13 +580,13 @@ a:focus {
   }
   
   .card-header h3 {
-    font: 1.2rem var(--font-futuristic); /* Reduced font size to help fit text */
+    font: 1.2rem var(--font-futuristic);
     color: var(--fg);
     letter-spacing: 1px;
     transition: var(--transition);
     position: relative;
     padding-left: 2.5rem;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
   }
   
   .card-header h3::before {
@@ -617,7 +617,7 @@ a:focus {
     color: #b0bec5;
     opacity: 0.9;
     margin-top: 0.5rem;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
   }
   
   /* Current Label */
@@ -644,11 +644,11 @@ a:focus {
   }
   
   .card-content p {
-    font-size: 0.9rem; /* Reduced font size to help fit text */
+    font-size: 0.9rem;
     line-height: 1.6;
     color: var(--fg);
     transition: var(--transition);
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
   }
   
   .card-content p:hover {
