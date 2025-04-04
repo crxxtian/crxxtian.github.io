@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Test Post"
+title: "First Post"
 date: 2025-03-24
-excerpt: Just making sure this works.
+excerpt: Come read my very first blog post about how I made this website.
 ---
 
 # My first blog post.

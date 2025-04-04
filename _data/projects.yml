@@ -1,0 +1,14 @@
+- name: RedWood Cabinets
+  category: Web Development
+  description: "A modern business website built with Vite, TypeScript, React, shadcn-ui, and Tailwind CSS."
+  github_url: "https://github.com/crxxtian/project-redwood-remodel"
+
+- name: CodePenguin
+  category: Security Tools
+  description: "A GUI based ChatGPT-based Comprehensive Code Vulnerability analysis program"
+  github_url: "https://github.com/crxxtian/codepenguin-gpt-code-scanner"
+
+- name: RiskletBot
+  category: AI Agents
+  description: "An AI agent powered by OpenAI's API for task automation and info retrieval. (Coming Soon)"
+  github_url: "https://github.com/crxxtian"
