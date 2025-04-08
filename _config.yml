@@ -6,6 +6,12 @@ url: "https://crxxtian.github.io"
 permalink: /blog/:title/
 markdown: kramdown
 future: true
+defaults:
+  - scope:
+      path: "_posts"
+    values:
+      layout: post
+
 
 # Plugins if needed
 plugins:
